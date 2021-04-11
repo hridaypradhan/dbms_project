@@ -1,14 +1,14 @@
 import 'package:dbms_project/enums.dart';
 
-class Transaction {
+class ClubTransaction {
   String payer, payee, description;
   double amount;
   PaymentMethod paymentMethod;
   DateTime dateTime;
-  TransactionDirection transactionDirection;
+  ClubTransactionDirection transactionDirection;
   // TODO screenshot upload
 
-  Transaction({
+  ClubTransaction({
     this.payer,
     this.payee,
     this.description,

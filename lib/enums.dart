@@ -10,7 +10,7 @@ enum PaymentCategory {
   misc,
 }
 
-enum TransactionDirection {
+enum ClubTransactionDirection {
   incoming,
   outgoing,
 }
