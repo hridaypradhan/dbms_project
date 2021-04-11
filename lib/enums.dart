@@ -1,5 +1,16 @@
-enum PaymentMethod{gpay, paytm, cash}
+enum PaymentMethod {
+  gpay,
+  paytm,
+  cash,
+}
 
-enum PaymentCategory{transport, food, misc}
+enum PaymentCategory {
+  transport,
+  food,
+  misc,
+}
 
-enum TransactionDirection{incoming, outgoing}
+enum TransactionDirection {
+  incoming,
+  outgoing,
+}
