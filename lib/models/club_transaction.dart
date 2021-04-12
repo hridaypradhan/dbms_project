@@ -1,3 +1,4 @@
+import 'package:dbms_project/constants.dart';
 import 'package:dbms_project/enums.dart';
 
 class ClubTransaction {
@@ -15,6 +16,27 @@ class ClubTransaction {
     this.amount,
     this.paymentMethod,
     this.dateTime,
-    this.transactionDirection
+    this.transactionDirection,
   });
+
+  factory ClubTransaction.fromMap(Map<String, dynamic> json) => ClubTransaction(
+        payer: json[clubTransactionsPayerColumn],
+        payee: json[clubTransactionsPayeeColumn],
+        description: json[clubTransactionsDescriptionColumn],
+        amount: json[clubTransactionsAmountColumn].toDouble(),
+        paymentMethod: json[clubTransactionsPaymentMethodColumn],
+        dateTime: DateTime.parse(json[clubTransactionsDateTimeColumn]),
+        transactionDirection: json[clubTransactionsTransactionDirectionColumn],
+      );
+
+  Map<String, dynamic> toMap() => {
+        clubTransactionsPayerColumn: payer,
+        clubTransactionsPayeeColumn: payee,
+        clubTransactionsDescriptionColumn: description,
+        clubTransactionsAmountColumn: amount,
+        clubTransactionsPaymentMethodColumn: paymentMethod.toString(),
+        clubTransactionsDateTimeColumn: dateTime.toIso8601String(),
+        clubTransactionsTransactionDirectionColumn:
+            transactionDirection.toString(),
+      };
 }

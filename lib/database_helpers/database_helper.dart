@@ -1,3 +1,4 @@
+import 'package:dbms_project/constants.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
@@ -10,7 +11,6 @@ class DatabaseHelper {
     }
     return _databaseHelper;
   }
-  
 
   Future<Database> get database async {
     if (_database == null) {
@@ -26,13 +26,27 @@ class DatabaseHelper {
     var database = await openDatabase(
       path,
       version: 1,
-      onCreate: (db, version) {
-        // TODO add create table queries
-        db.execute('''
-          
+      onCreate: (db, version) async {
+        await db.execute('''
+              create table $clubTransactionsTable (
+                $clubTransactionsPayerColumn text,
+                $clubTransactionsPayeeColumn text,
+                $clubTransactionsDescriptionColumn text,
+                $clubTransactionsAmountColumn decimal,
+                $clubTransactionsPaymentMethodColumn text,
+                $clubTransactionsDateTimeColumn text,
+                $clubTransactionsTransactionDirectionColumn text
+              )
         ''');
+        print('Here');
       },
     );
     return database;
+  }
+
+  void showTables() async {
+    var db = await database;
+    List list = await db.rawQuery('select * from $clubTransactionsTable');
+    print(list);
   }
 }
