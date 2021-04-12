@@ -44,6 +44,7 @@ Icon getPaymentCategoryIcon(PaymentCategory category) {
   }
 }
 
-String getCategoryName(transactionOrBalance) => transactionOrBalance.paymentCategory
-      .toString()
-      .substring(transactionOrBalance.paymentCategory.toString().indexOf('.') + 1);
+String getCategoryName(transactionOrBalance) =>
+    transactionOrBalance.paymentCategory.toString().substring(
+        transactionOrBalance.paymentCategory.toString().indexOf('.') + 1);
+
