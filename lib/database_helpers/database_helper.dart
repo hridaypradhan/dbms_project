@@ -44,7 +44,7 @@ class DatabaseHelper {
     return database;
   }
 
-  void showTables() async {
+  void showClubTransactionTable() async {
     var db = await database;
     List list = await db.rawQuery('select * from $clubTransactionsTable');
     print(list);
