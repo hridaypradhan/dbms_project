@@ -1,6 +1,7 @@
 import 'package:dbms_project/database_helpers/club_transaction_helper.dart';
 import 'package:dbms_project/database_helpers/database_helper.dart';
 import 'package:dbms_project/dummy_data.dart';
+import 'package:dbms_project/screens/home_screen/widgets/recent_club_transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -19,9 +20,35 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Row(
+    var screenSize = MediaQuery.of(context).size;
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: [
+            Positioned(
+              top: screenSize.height / 2,
+              bottom: 0.0,
+              left: 0.0,
+              right: 0.0,
+              child: SizedBox(
+                child: ListView.builder(
+                  padding: EdgeInsets.all(5.0),
+                  itemCount: dummyList.length,
+                  itemBuilder: (context, index) => RecentClubTransaction(
+                    clubTransaction: dummyList[index],
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/*
+Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             TextButton(
@@ -44,7 +71,4 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
+*/

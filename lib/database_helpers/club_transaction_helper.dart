@@ -19,6 +19,6 @@ class ClubTransactionHelper {
       where: '$clubTransactionsPayerColumn = ?',
       whereArgs: [id],
     );
-    print(result);
+    print('result : $result');
   }
 }

@@ -6,6 +6,7 @@ class ClubTransaction {
   double amount;
   PaymentMethod paymentMethod;
   DateTime dateTime;
+  PaymentCategory paymentCategory;
   ClubTransactionDirection transactionDirection;
   // TODO screenshot upload
 
@@ -16,6 +17,7 @@ class ClubTransaction {
     this.amount,
     this.paymentMethod,
     this.dateTime,
+    this.paymentCategory,
     this.transactionDirection,
   });
 
@@ -26,6 +28,7 @@ class ClubTransaction {
         amount: json[clubTransactionsAmountColumn].toDouble(),
         paymentMethod: json[clubTransactionsPaymentMethodColumn],
         dateTime: DateTime.parse(json[clubTransactionsDateTimeColumn]),
+        paymentCategory: json[clubTransactionsPaymentCategoryColumn],
         transactionDirection: json[clubTransactionsTransactionDirectionColumn],
       );
 
@@ -36,6 +39,7 @@ class ClubTransaction {
         clubTransactionsAmountColumn: amount,
         clubTransactionsPaymentMethodColumn: paymentMethod.toString(),
         clubTransactionsDateTimeColumn: dateTime.toIso8601String(),
+        clubTransactionsPaymentCategoryColumn: paymentCategory.toString(),
         clubTransactionsTransactionDirectionColumn:
             transactionDirection.toString(),
       };

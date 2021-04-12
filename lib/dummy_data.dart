@@ -8,10 +8,12 @@ ClubTransaction dummyTransaction = ClubTransaction(
   amount: 1000,
   paymentMethod: PaymentMethod.paytm,
   dateTime: DateTime.now(),
+  paymentCategory: PaymentCategory.Misc,
   transactionDirection: ClubTransactionDirection.outgoing,
 );
 
 List<ClubTransaction> dummyList = [
+  dummyTransaction,
   dummyTransaction,
   dummyTransaction,
   dummyTransaction,

@@ -35,10 +35,10 @@ class DatabaseHelper {
                 $clubTransactionsAmountColumn decimal,
                 $clubTransactionsPaymentMethodColumn text,
                 $clubTransactionsDateTimeColumn text,
+                $clubTransactionsPaymentCategoryColumn text,
                 $clubTransactionsTransactionDirectionColumn text
               )
         ''');
-        print('Here');
       },
     );
     return database;

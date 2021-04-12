@@ -5,9 +5,9 @@ enum PaymentMethod {
 }
 
 enum PaymentCategory {
-  transport,
-  food,
-  misc,
+  Transport,
+  Food,
+  Misc,
 }
 
 enum ClubTransactionDirection {
