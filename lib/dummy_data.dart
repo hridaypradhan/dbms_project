@@ -1,4 +1,5 @@
 import 'package:dbms_project/enums.dart';
+import 'package:dbms_project/models/balance_item.dart';
 import 'package:dbms_project/models/club_transaction.dart';
 
 ClubTransaction dummyTransaction = ClubTransaction(
@@ -30,4 +31,19 @@ List<CategoryBalance> dummyCategoryBalanceList = [
   dummyCategoryBalance,
   dummyCategoryBalance,
   dummyCategoryBalance,
+];
+
+BalanceItem dummyBalanceItem = BalanceItem(
+  gpay: 10,
+  paytm: 10,
+  cash: 10,
+  income: 40,
+  expense: 50,
+  totalBalance: 30,
+);
+
+List<BalanceItem> dummyBalanceItemList = [
+  dummyBalanceItem,
+  dummyBalanceItem,
+  dummyBalanceItem,
 ];
