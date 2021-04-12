@@ -2,6 +2,8 @@ import 'package:bottom_bar_with_sheet/bottom_bar_with_sheet.dart';
 import 'package:dbms_project/database_helpers/club_transaction_helper.dart';
 import 'package:dbms_project/database_helpers/database_helper.dart';
 import 'package:dbms_project/dummy_data.dart';
+import 'package:dbms_project/models/club_transaction.dart';
+import 'package:dbms_project/screens/home_screen/widgets/category_balance_card.dart';
 import 'package:dbms_project/screens/home_screen/widgets/recent_club_transaction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,20 +27,35 @@ class _HomeScreenState extends State<HomeScreen> {
     var screenSize = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        body: Stack(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Positioned(
-              top: screenSize.height / 2,
-              bottom: 0.0,
-              left: 0.0,
-              right: 0.0,
-              child: SizedBox(
-                child: ListView.builder(
-                  padding: EdgeInsets.all(5.0),
-                  itemCount: dummyList.length,
-                  itemBuilder: (context, index) => RecentClubTransaction(
-                    clubTransaction: dummyList[index],
-                  ),
+            Container(
+              height: screenSize.height / 3.5,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: dummyCategoryBalanceList.length,
+                itemBuilder: (context, index) => CategoryBalanceCard(
+                  categoryBalance: dummyCategoryBalanceList[index],
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(20.0, 10.0, 10.0, 20.0),
+              child: Text(
+                'Recent Transactions',
+                style: TextStyle(
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.5,
+                ),
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: dummyList.length,
+                itemBuilder: (context, index) => RecentClubTransaction(
+                  clubTransaction: dummyList[index],
                 ),
               ),
             )

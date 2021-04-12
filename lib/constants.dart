@@ -24,7 +24,7 @@ Icon getTransactionIcon(ClubTransactionDirection direction) {
         );
 }
 
-Icon getPaymentCategoryIconFromEnum(PaymentCategory category) {
+Icon getPaymentCategoryIcon(PaymentCategory category) {
   switch (category) {
     case PaymentCategory.Food:
       return Icon(
@@ -44,19 +44,6 @@ Icon getPaymentCategoryIconFromEnum(PaymentCategory category) {
   }
 }
 
-Icon getPaymentCategoryIconFromString(String category) {
-  if (PaymentCategory.Food.toString() == category)
-    return Icon(
-      Icons.food_bank_rounded,
-      size: 40.0,
-    );
-  if (PaymentCategory.Transport.toString() == category)
-    return Icon(
-      Icons.emoji_transportation_rounded,
-      size: 40.0,
-    );
-  return Icon(
-    Icons.attach_money,
-    size: 50.0,
-  );
-}
+String getCategoryName(transactionOrBalance) => transactionOrBalance.paymentCategory
+      .toString()
+      .substring(transactionOrBalance.paymentCategory.toString().indexOf('.') + 1);
