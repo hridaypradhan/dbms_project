@@ -20,3 +20,14 @@ List<ClubTransaction> dummyList = [
   dummyTransaction,
   dummyTransaction,
 ];
+
+CategoryBalance dummyCategoryBalance = CategoryBalance(
+  paymentCategory: PaymentCategory.Food,
+  amount: 1500.0,
+);
+
+List<CategoryBalance> dummyCategoryBalanceList = [
+  dummyCategoryBalance,
+  dummyCategoryBalance,
+  dummyCategoryBalance,
+];

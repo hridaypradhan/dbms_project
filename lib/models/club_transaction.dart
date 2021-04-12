@@ -44,3 +44,23 @@ class ClubTransaction {
             transactionDirection.toString(),
       };
 }
+
+class CategoryBalance {
+    CategoryBalance({
+        this.paymentCategory,
+        this.amount,
+    });
+
+    PaymentCategory paymentCategory;
+    double amount;
+
+    factory CategoryBalance.fromMap(Map<String, dynamic> json) => CategoryBalance(
+        paymentCategory: json["paymentCategory"],
+        amount: json["amount"].toDouble(),
+    );
+
+    Map<String, dynamic> toMap() => {
+        "paymentCategory": paymentCategory,
+        "amount": amount,
+    };
+}

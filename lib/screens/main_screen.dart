@@ -1,4 +1,5 @@
 import 'package:bottom_bar_with_sheet/bottom_bar_with_sheet.dart';
+import 'package:dbms_project/enums.dart';
 import 'package:dbms_project/screens/balances_screen/balances_screen.dart';
 import 'package:dbms_project/screens/budget_screen/budget_Screen.dart';
 import 'package:dbms_project/screens/collabs_screen/collabs_screen.dart';
@@ -14,7 +15,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     int _selectedIndex = 0;
-
+    
     return Scaffold(
       bottomNavigationBar: BottomBarWithSheet(
         selectedIndex: _selectedIndex,

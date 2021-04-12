@@ -20,11 +20,11 @@ Icon getTransactionIcon(ClubTransactionDirection direction) {
         )
       : Icon(
           Icons.arrow_upward_rounded,
-          color: Colors.green,
+          color: Colors.red,
         );
 }
 
-Icon getPaymentCategoryIcon(PaymentCategory category) {
+Icon getPaymentCategoryIconFromEnum(PaymentCategory category) {
   switch (category) {
     case PaymentCategory.Food:
       return Icon(
@@ -42,4 +42,21 @@ Icon getPaymentCategoryIcon(PaymentCategory category) {
         size: 50.0,
       );
   }
+}
+
+Icon getPaymentCategoryIconFromString(String category) {
+  if (PaymentCategory.Food.toString() == category)
+    return Icon(
+      Icons.food_bank_rounded,
+      size: 40.0,
+    );
+  if (PaymentCategory.Transport.toString() == category)
+    return Icon(
+      Icons.emoji_transportation_rounded,
+      size: 40.0,
+    );
+  return Icon(
+    Icons.attach_money,
+    size: 50.0,
+  );
 }

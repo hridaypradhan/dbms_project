@@ -10,14 +10,25 @@ class RecentClubTransaction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: getPaymentCategoryIcon(clubTransaction.paymentCategory),
+      leading: getPaymentCategoryIconFromEnum(clubTransaction.paymentCategory),
       title: Text('${clubTransaction.payer} to ${clubTransaction.payee}'),
       subtitle: ExpandText(
-        'Amount: ${clubTransaction.amount} \nReason: ${clubTransaction.description} \nCategory: ${_getCategory(clubTransaction)}',
+        'Date: ${_getDate(clubTransaction)} \nReason: ${clubTransaction.description} \nCategory: ${_getCategory(clubTransaction)}',
         maxLines: 1,
         expandWidth: true,
       ),
-      trailing: getTransactionIcon(clubTransaction.transactionDirection),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          getTransactionIcon(clubTransaction.transactionDirection),
+          SizedBox(
+            width: 10.0,
+          ),
+          Text(
+            clubTransaction.amount.toString(),
+          ),
+        ],
+      ),
     );
   }
 
@@ -25,4 +36,6 @@ class RecentClubTransaction extends StatelessWidget {
       .paymentCategory
       .toString()
       .substring(clubTransaction.paymentCategory.toString().indexOf('.') + 1);
+
+  String _getDate(ClubTransaction clubTransaction)=>'${clubTransaction.dateTime.day}/${clubTransaction.dateTime.month}/${clubTransaction.dateTime.year}';
 }
