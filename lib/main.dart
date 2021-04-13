@@ -1,8 +1,5 @@
 import 'package:dbms_project/database_helpers/database_helper.dart';
-import 'package:dbms_project/screens/balances_screen/balances_screen.dart';
-import 'package:dbms_project/screens/collabs_screen/collabs_screen.dart';
-import 'package:dbms_project/screens/home_screen/home_screen.dart';
-import 'package:dbms_project/screens/main_screen.dart';
+import 'package:dbms_project/screens/main_screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

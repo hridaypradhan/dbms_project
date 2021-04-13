@@ -8,7 +8,6 @@ class ClubTransaction {
   DateTime dateTime;
   PaymentCategory paymentCategory;
   ClubTransactionDirection transactionDirection;
-  // TODO screenshot upload
 
   ClubTransaction({
     this.payer,
