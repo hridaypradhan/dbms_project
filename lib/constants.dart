@@ -48,3 +48,27 @@ String getCategoryName(transactionOrBalance) =>
     transactionOrBalance.paymentCategory.toString().substring(
         transactionOrBalance.paymentCategory.toString().indexOf('.') + 1);
 
+PaymentMethod getPaymentMethod(String method) {
+  if (method == PaymentMethod.gpay.toString())
+    return PaymentMethod.gpay;
+  else if (method == PaymentMethod.paytm.toString())
+    return PaymentMethod.paytm;
+  else
+    return PaymentMethod.cash;
+}
+
+PaymentCategory getPaymentCategory(String category) {
+  if (category == PaymentCategory.Food.toString())
+    return PaymentCategory.Food;
+  else if (category == PaymentCategory.Transport.toString())
+    return PaymentCategory.Transport;
+  else
+    return PaymentCategory.Misc;
+}
+
+ClubTransactionDirection getDirection(String direction) {
+  if (direction == ClubTransactionDirection.incoming.toString())
+    return ClubTransactionDirection.incoming;
+  else
+    return ClubTransactionDirection.outgoing;
+}

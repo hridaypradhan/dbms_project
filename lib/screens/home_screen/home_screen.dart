@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 
 class HomeScreen extends StatefulWidget {
-  static final id = 'home_screen';
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }

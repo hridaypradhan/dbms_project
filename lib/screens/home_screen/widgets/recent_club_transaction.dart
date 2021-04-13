@@ -1,10 +1,13 @@
 import 'package:dbms_project/constants.dart';
+import 'package:dbms_project/database_helpers/club_transaction_helper.dart';
+import 'package:dbms_project/database_helpers/database_helper.dart';
 import 'package:dbms_project/models/club_transaction.dart';
 import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
 
 class RecentClubTransaction extends StatelessWidget {
   final ClubTransaction clubTransaction;
+  final ClubTransactionHelper _clubTransactionHelper = ClubTransactionHelper();
 
   RecentClubTransaction({this.clubTransaction});
   @override
@@ -25,14 +28,24 @@ class RecentClubTransaction extends StatelessWidget {
             width: 10.0,
           ),
           Text(
-            clubTransaction.amount.toString(),
+            '₹${clubTransaction.amount.toString()}',
+          ),
+          SizedBox(
+            width: 10.0,
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.delete_rounded,
+            ),
+            // TODO Change this to delete
+            onPressed: () {
+              DatabaseHelper().showClubTransactionTable();
+            },
           ),
         ],
       ),
     );
   }
-
-  
 
   String _getDate(ClubTransaction clubTransaction) =>
       '${clubTransaction.dateTime.day}/${clubTransaction.dateTime.month}/${clubTransaction.dateTime.year}';

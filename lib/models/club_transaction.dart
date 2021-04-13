@@ -2,6 +2,7 @@ import 'package:dbms_project/constants.dart';
 import 'package:dbms_project/enums.dart';
 
 class ClubTransaction {
+  // TODO Add id
   String payer, payee, description;
   double amount;
   PaymentMethod paymentMethod;
@@ -19,6 +20,8 @@ class ClubTransaction {
     this.paymentCategory,
     this.transactionDirection,
   });
+
+ 
 
   factory ClubTransaction.fromMap(Map<String, dynamic> json) => ClubTransaction(
         payer: json[clubTransactionsPayerColumn],
@@ -45,21 +48,21 @@ class ClubTransaction {
 }
 
 class CategoryBalance {
-    CategoryBalance({
-        this.paymentCategory,
-        this.amount,
-    });
+  CategoryBalance({
+    this.paymentCategory,
+    this.amount,
+  });
 
-    PaymentCategory paymentCategory;
-    double amount;
+  PaymentCategory paymentCategory;
+  double amount;
 
-    factory CategoryBalance.fromMap(Map<String, dynamic> json) => CategoryBalance(
+  factory CategoryBalance.fromMap(Map<String, dynamic> json) => CategoryBalance(
         paymentCategory: json["paymentCategory"],
         amount: json["amount"].toDouble(),
-    );
+      );
 
-    Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => {
         "paymentCategory": paymentCategory,
         "amount": amount,
-    };
+      };
 }

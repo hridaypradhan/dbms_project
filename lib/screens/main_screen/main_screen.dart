@@ -1,6 +1,9 @@
+import 'package:dbms_project/constants.dart';
+import 'package:dbms_project/database_helpers/club_transaction_helper.dart';
+import 'package:dbms_project/enums.dart';
+import 'package:dbms_project/models/club_transaction.dart';
 import 'package:dbms_project/screens/balances_screen/balances_screen.dart';
 import 'package:date_time_picker/date_time_picker.dart';
-
 import 'package:dbms_project/screens/budget_screen/budget_screen.dart';
 import 'package:dbms_project/screens/collabs_screen/collabs_screen.dart';
 import 'package:dbms_project/screens/home_screen/home_screen.dart';
@@ -14,18 +17,22 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  ClubTransactionHelper _clubTransactionHelper = ClubTransactionHelper();
+
   PageController _pageController;
+
   TextEditingController _payerController,
       _payeeController,
       _descController,
       _amountController;
   int _barIndex = 0;
   String _chosenCategory, _chosenPaymentMethod, _chosenDirection;
+  DateTime _chosenDateTime;
   @override
   void initState() {
     super.initState();
     _pageController = PageController();
-    _payeeController = TextEditingController();
+    _payerController = TextEditingController();
     _payeeController = TextEditingController();
     _descController = TextEditingController();
     _amountController = TextEditingController();
@@ -43,8 +50,6 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-
     return Scaffold(
       bottomNavigationBar: FFNavigationBar(
         selectedIndex: _barIndex,
@@ -105,7 +110,6 @@ class _MainScreenState extends State<MainScreen> {
                                 style: TextStyle(fontSize: 25.0),
                               ),
                               TextField(
-                                autofocus: true,
                                 textAlign: TextAlign.center,
                                 keyboardType: TextInputType.name,
                                 textCapitalization: TextCapitalization.words,
@@ -140,7 +144,7 @@ class _MainScreenState extends State<MainScreen> {
                               TextField(
                                 textAlign: TextAlign.center,
                                 controller: _descController,
-                                keyboardType: TextInputType.multiline,
+                                keyboardType: TextInputType.text,
                                 textCapitalization:
                                     TextCapitalization.sentences,
                                 decoration: InputDecoration(
@@ -258,7 +262,7 @@ class _MainScreenState extends State<MainScreen> {
                               TextField(
                                 textAlign: TextAlign.center,
                                 keyboardType: TextInputType.number,
-                                controller: _descController,
+                                controller: _amountController,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(
                                     borderSide: BorderSide(color: Colors.white),
@@ -276,13 +280,52 @@ class _MainScreenState extends State<MainScreen> {
                                 lastDate: DateTime.now(),
                                 dateHintText: 'Transaction Date',
                                 timeHintText: 'Time',
+                                onSaved: (value) {
+                                  _chosenDateTime = DateTime.parse(value);
+                                },
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   primary: Colors.grey,
                                 ),
                                 onPressed: () {
-                                  Navigator.pop(context);
+                                  try {
+                                    var newTransaction = ClubTransaction(
+                                      payer: _payerController.text.length == 0
+                                          ? 'XYZ'
+                                          : _payerController.text,
+                                      payee: _payeeController.text.length == 0
+                                          ? 'XYZ'
+                                          : _payeeController.text,
+                                      description:
+                                          _descController.text ?? 'Unspecified',
+                                      amount: double.parse(
+                                              _amountController.text) ??
+                                          0.0,
+                                      dateTime:
+                                          _chosenDateTime ?? DateTime.now(),
+                                      paymentMethod: getPaymentMethod(
+                                              _chosenPaymentMethod) ??
+                                          PaymentMethod.cash,
+                                      paymentCategory:
+                                          getPaymentCategory(_chosenCategory) ??
+                                              PaymentCategory.Misc,
+                                      transactionDirection:
+                                          getDirection(_chosenDirection) ??
+                                              ClubTransactionDirection.incoming,
+                                    );
+                                    _clubTransactionHelper
+                                        .insertTransaction(newTransaction);
+                                    Navigator.pop(context);
+                                  } catch (e) {
+                                    Navigator.pop(context);
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content:
+                                            Text('Fill in all the fields!'),
+                                      ),
+                                    );
+                                  }
                                 },
                                 child: Text('Submit'),
                               ),

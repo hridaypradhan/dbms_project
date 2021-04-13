@@ -6,6 +6,7 @@ class BudgetScreen extends StatefulWidget {
 }
 
 class _BudgetScreenState extends State<BudgetScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
