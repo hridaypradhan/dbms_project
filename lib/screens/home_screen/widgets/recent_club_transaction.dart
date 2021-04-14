@@ -47,11 +47,21 @@ class RecentClubTransaction extends StatelessWidget {
               Icons.delete_rounded,
             ),
             onPressed: () {
-              Provider.of<ClubTransactionHelper>(
-                context,
-                listen: false,
-              ).deleteTransaction(
-                clubTransaction.id.toString(),
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Are you sure?'),
+                  action: SnackBarAction(
+                    label: 'Delete',
+                    onPressed: () {
+                      Provider.of<ClubTransactionHelper>(
+                        context,
+                        listen: false,
+                      ).deleteTransaction(
+                        clubTransaction.id.toString(),
+                      );
+                    },
+                  ),
+                ),
               );
             },
           ),
