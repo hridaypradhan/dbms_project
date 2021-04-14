@@ -42,10 +42,10 @@ class _BalancesScreenState extends State<BalancesScreen> {
                   Container(
                     width: screenSize.width * 0.3,
                     margin: EdgeInsets.symmetric(
-                      horizontal: 40.0,
-                      vertical: 10.0,
+                      horizontal: screenSize.width * 0.09,
+                      vertical: screenSize.width * 0.02,
                     ),
-                    padding: EdgeInsets.all(20.0),
+                    padding: EdgeInsets.all(screenSize.width * 0.04),
                     decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(25.0),
@@ -63,10 +63,10 @@ class _BalancesScreenState extends State<BalancesScreen> {
                   Container(
                     width: screenSize.width * 0.3,
                     margin: EdgeInsets.symmetric(
-                      horizontal: 40.0,
-                      vertical: 10.0,
+                      horizontal: screenSize.width * 0.09,
+                      vertical: screenSize.width * 0.02,
                     ),
-                    padding: EdgeInsets.all(20.0),
+                    padding: EdgeInsets.all(screenSize.width * 0.04),
                     decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(25.0),

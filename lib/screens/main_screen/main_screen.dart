@@ -76,6 +76,7 @@ class _MainScreenState extends State<MainScreen> {
           selectedItemLabelColor: Colors.white,
         ),
         onSelectTab: (index) {
+          int prevPage = _pageController.page.toInt();
           setState(
             () {
               if (index > 2)
@@ -97,14 +98,14 @@ class _MainScreenState extends State<MainScreen> {
                       builder: (context, setState) {
                         return Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: _getForm(),
+                          child: _getForm(prevPage),
                         );
                       },
                     );
                   },
                 );
-                _pageController.jumpToPage(0);
-                _barIndex = 0;
+                _pageController.jumpToPage(prevPage);
+                _barIndex = prevPage >= 2 ? prevPage + 1 : prevPage;
               }
             },
           );
@@ -129,8 +130,7 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
-  _getForm() {
-    if (_barIndex == 0) return AddTransactionForm();
-    else return Container();
+  _getForm(int prevPage) {
+    if (_pageController.page == 0) return AddTransactionForm();
   }
 }
