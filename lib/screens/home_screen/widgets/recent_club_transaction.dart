@@ -1,13 +1,12 @@
 import 'package:dbms_project/constants.dart';
 import 'package:dbms_project/database_helpers/club_transaction_helper.dart';
-import 'package:dbms_project/database_helpers/database_helper.dart';
 import 'package:dbms_project/models/club_transaction.dart';
 import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RecentClubTransaction extends StatelessWidget {
   final ClubTransaction clubTransaction;
-  final ClubTransactionHelper _clubTransactionHelper = ClubTransactionHelper();
 
   RecentClubTransaction({this.clubTransaction});
   @override
@@ -37,9 +36,13 @@ class RecentClubTransaction extends StatelessWidget {
             icon: Icon(
               Icons.delete_rounded,
             ),
-            // TODO Change this to delete
             onPressed: () {
-              DatabaseHelper().showClubTransactionTable();
+              Provider.of<ClubTransactionHelper>(
+                context,
+                listen: false,
+              ).deleteTransaction(
+                clubTransaction.id.toString(),
+              );
             },
           ),
         ],

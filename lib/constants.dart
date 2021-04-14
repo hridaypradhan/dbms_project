@@ -11,6 +11,7 @@ final String clubTransactionsTransactionDirectionColumn =
 final String clubTransactionsDateTimeColumn = 'dateTime';
 final String clubTransactionsAmountColumn = 'amount';
 final String clubTransactionsPaymentCategoryColumn = 'paymentCategory';
+final String clubTransactionsIdColumn = 'id';
 
 Icon getTransactionIcon(ClubTransactionDirection direction) {
   return direction == ClubTransactionDirection.incoming

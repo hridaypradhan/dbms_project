@@ -1,8 +1,9 @@
 import 'package:dbms_project/constants.dart';
 import 'package:dbms_project/enums.dart';
+import 'package:flutter/material.dart';
 
 class ClubTransaction {
-  // TODO Add id
+  int id;
   String payer, payee, description;
   double amount;
   PaymentMethod paymentMethod;
@@ -11,30 +12,31 @@ class ClubTransaction {
   ClubTransactionDirection transactionDirection;
 
   ClubTransaction({
-    this.payer,
-    this.payee,
+    this.id,
+    @required this.payer,
+    @required this.payee,
     this.description,
-    this.amount,
+    @required this.amount,
     this.paymentMethod,
     this.dateTime,
     this.paymentCategory,
-    this.transactionDirection,
+    @required this.transactionDirection,
   });
 
- 
-
   factory ClubTransaction.fromMap(Map<String, dynamic> json) => ClubTransaction(
+        id: json[clubTransactionsIdColumn],
         payer: json[clubTransactionsPayerColumn],
         payee: json[clubTransactionsPayeeColumn],
         description: json[clubTransactionsDescriptionColumn],
         amount: json[clubTransactionsAmountColumn].toDouble(),
-        paymentMethod: json[clubTransactionsPaymentMethodColumn],
+        paymentMethod: getPaymentMethod(json[clubTransactionsPaymentMethodColumn]),
         dateTime: DateTime.parse(json[clubTransactionsDateTimeColumn]),
-        paymentCategory: json[clubTransactionsPaymentCategoryColumn],
-        transactionDirection: json[clubTransactionsTransactionDirectionColumn],
+        paymentCategory: getPaymentCategory(json[clubTransactionsPaymentCategoryColumn]),
+        transactionDirection: getDirection(json[clubTransactionsTransactionDirectionColumn]),
       );
 
   Map<String, dynamic> toMap() => {
+        clubTransactionsIdColumn: id,
         clubTransactionsPayerColumn: payer,
         clubTransactionsPayeeColumn: payee,
         clubTransactionsDescriptionColumn: description,

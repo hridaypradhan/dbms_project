@@ -1,5 +1,6 @@
 import 'package:dbms_project/constants.dart';
 import 'package:dbms_project/database_helpers/club_transaction_helper.dart';
+import 'package:dbms_project/database_helpers/database_helper.dart';
 import 'package:dbms_project/enums.dart';
 import 'package:dbms_project/models/club_transaction.dart';
 import 'package:dbms_project/screens/balances_screen/balances_screen.dart';
@@ -10,6 +11,7 @@ import 'package:dbms_project/screens/home_screen/home_screen.dart';
 import 'package:dbms_project/screens/main_screen/widgets/reusable_box.dart';
 import 'package:ff_navigation_bar/ff_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -17,7 +19,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  ClubTransactionHelper _clubTransactionHelper = ClubTransactionHelper();
 
   PageController _pageController;
 
@@ -51,6 +52,11 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          DatabaseHelper().showClubTransactionTable();
+        },
+      ),
       bottomNavigationBar: FFNavigationBar(
         selectedIndex: _barIndex,
         items: [
@@ -288,7 +294,7 @@ class _MainScreenState extends State<MainScreen> {
                                 style: ElevatedButton.styleFrom(
                                   primary: Colors.grey,
                                 ),
-                                onPressed: () {
+                                onPressed: () async {
                                   try {
                                     var newTransaction = ClubTransaction(
                                       payer: _payerController.text.length == 0
@@ -309,15 +315,19 @@ class _MainScreenState extends State<MainScreen> {
                                           PaymentMethod.cash,
                                       paymentCategory:
                                           getPaymentCategory(_chosenCategory) ??
-                                              PaymentCategory.Misc,
+                                              PaymentCategory.Transport,
                                       transactionDirection:
                                           getDirection(_chosenDirection) ??
                                               ClubTransactionDirection.incoming,
                                     );
-                                    _clubTransactionHelper
-                                        .insertTransaction(newTransaction);
+                                    print(newTransaction.toMap());
+                                    Provider.of<ClubTransactionHelper>(
+                                      context,
+                                      listen: false,
+                                    ).insertTransaction(newTransaction);
                                     Navigator.pop(context);
                                   } catch (e) {
+                                    print(e);
                                     Navigator.pop(context);
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(

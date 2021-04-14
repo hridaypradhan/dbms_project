@@ -29,6 +29,7 @@ class DatabaseHelper {
       onCreate: (db, version) async {
         await db.execute('''
               create table $clubTransactionsTable (
+                $clubTransactionsIdColumn integer primary key autoincrement,
                 $clubTransactionsPayerColumn text,
                 $clubTransactionsPayeeColumn text,
                 $clubTransactionsDescriptionColumn text,
@@ -46,7 +47,7 @@ class DatabaseHelper {
 
   void showClubTransactionTable() async {
     var db = await database;
-    List list = await db.rawQuery('select * from $clubTransactionsTable');
+    List list = await db.rawQuery('select * from $clubTransactionsTable order by id desc');
     print(list);
   }
 }

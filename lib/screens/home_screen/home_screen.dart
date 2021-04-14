@@ -6,20 +6,10 @@ import 'package:dbms_project/screens/home_screen/widgets/category_balance_card.d
 import 'package:dbms_project/screens/home_screen/widgets/recent_club_transaction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sqflite/sqflite.dart';
 
-class HomeScreen extends StatefulWidget {
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  ClubTransactionHelper _clubTransactionHelper = ClubTransactionHelper();
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -50,13 +40,17 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: dummyList.length,
-                itemBuilder: (context, index) => RecentClubTransaction(
-                  clubTransaction: dummyList[index],
-                ),
+              child: ListView(
+                children: Provider.of<ClubTransactionHelper>(context)
+                    .clubTransactions
+                    .map<Widget>(
+                      (transaction) => RecentClubTransaction(
+                        clubTransaction: transaction,
+                      ),
+                    )
+                    .toList(),
               ),
-            )
+            ),
           ],
         ),
       ),
