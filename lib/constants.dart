@@ -1,4 +1,5 @@
 import 'package:dbms_project/enums.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 final String clubTransactionsTable = 'clubTransactionsTable';
@@ -38,8 +39,8 @@ Icon getPaymentCategoryIcon(PaymentCategory category) {
     );
   else
     return Icon(
-      Icons.attach_money,
-      size: 50.0,
+      CupertinoIcons.money_dollar,
+      size: 40.0,
     );
 }
 

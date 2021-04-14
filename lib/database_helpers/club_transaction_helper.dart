@@ -16,7 +16,7 @@ class ClubTransactionHelper extends ChangeNotifier {
     _clubTransactions = [];
     var db = await _databaseHelper.database;
     var result = await db
-        .rawQuery('select * from $clubTransactionsTable order by id desc');
+        .rawQuery('select * from $clubTransactionsTable order by dateTime desc');
     result.forEach(
       (element) => _clubTransactions.add(
         ClubTransaction.fromMap(element),
