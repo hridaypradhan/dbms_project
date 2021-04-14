@@ -22,7 +22,7 @@ class ClubTransactionHelper extends ChangeNotifier {
     notifyListeners();
   }
 
-  get clubTransactions => _clubTransactions;
+  List <ClubTransaction> get clubTransactions => _clubTransactions;
 
   void insertTransaction(ClubTransaction transaction) async {
     var db = await _databaseHelper.database;

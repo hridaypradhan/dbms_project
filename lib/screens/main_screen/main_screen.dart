@@ -19,7 +19,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-
   PageController _pageController;
 
   TextEditingController _payerController,
@@ -54,7 +53,14 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          DatabaseHelper().showClubTransactionTable();
+          // DatabaseHelper().showClubTransactionTable();
+          var list = Provider.of<ClubTransactionHelper>(
+            context,
+            listen: false,
+          ).clubTransactions;
+          for (var ele in list) {
+            print(ele.toMap());
+          }
         },
       ),
       bottomNavigationBar: FFNavigationBar(
@@ -286,7 +292,7 @@ class _MainScreenState extends State<MainScreen> {
                                 lastDate: DateTime.now(),
                                 dateHintText: 'Transaction Date',
                                 timeHintText: 'Time',
-                                onSaved: (value) {
+                                onChanged: (value) {
                                   _chosenDateTime = DateTime.parse(value);
                                 },
                               ),
@@ -295,6 +301,7 @@ class _MainScreenState extends State<MainScreen> {
                                   primary: Colors.grey,
                                 ),
                                 onPressed: () async {
+                                
                                   try {
                                     var newTransaction = ClubTransaction(
                                       payer: _payerController.text.length == 0
@@ -304,23 +311,23 @@ class _MainScreenState extends State<MainScreen> {
                                           ? 'XYZ'
                                           : _payeeController.text,
                                       description:
-                                          _descController.text ?? 'Unspecified',
-                                      amount: double.parse(
-                                              _amountController.text) ??
-                                          0.0,
+                                          _descController.text.length != 0
+                                              ? _descController.text
+                                              : 'Unspecified',
+                                      amount:
+                                          double.parse(_amountController.text),
                                       dateTime:
                                           _chosenDateTime ?? DateTime.now(),
                                       paymentMethod: getPaymentMethod(
                                               _chosenPaymentMethod) ??
-                                          PaymentMethod.cash,
+                                          PaymentMethod.Cash,
                                       paymentCategory:
                                           getPaymentCategory(_chosenCategory) ??
                                               PaymentCategory.Transport,
                                       transactionDirection:
                                           getDirection(_chosenDirection) ??
-                                              ClubTransactionDirection.incoming,
+                                              ClubTransactionDirection.Incoming,
                                     );
-                                    print(newTransaction.toMap());
                                     Provider.of<ClubTransactionHelper>(
                                       context,
                                       listen: false,

@@ -1,7 +1,7 @@
 enum PaymentMethod {
-  gpay,
-  paytm,
-  cash,
+  GPay,
+  Paytm,
+  Cash,
 }
 
 enum PaymentCategory {
@@ -11,6 +11,6 @@ enum PaymentCategory {
 }
 
 enum ClubTransactionDirection {
-  incoming,
-  outgoing,
+  Incoming,
+  Outgoing,
 }

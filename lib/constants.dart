@@ -14,7 +14,7 @@ final String clubTransactionsPaymentCategoryColumn = 'paymentCategory';
 final String clubTransactionsIdColumn = 'id';
 
 Icon getTransactionIcon(ClubTransactionDirection direction) {
-  return direction == ClubTransactionDirection.incoming
+  return direction == ClubTransactionDirection.Incoming
       ? Icon(
           Icons.arrow_downward_rounded,
           color: Colors.green,
@@ -26,23 +26,21 @@ Icon getTransactionIcon(ClubTransactionDirection direction) {
 }
 
 Icon getPaymentCategoryIcon(PaymentCategory category) {
-  switch (category) {
-    case PaymentCategory.Food:
-      return Icon(
-        Icons.food_bank_rounded,
-        size: 40.0,
-      );
-    case PaymentCategory.Transport:
-      return Icon(
-        Icons.emoji_transportation_rounded,
-        size: 40.0,
-      );
-    default:
-      return Icon(
-        Icons.attach_money,
-        size: 50.0,
-      );
-  }
+  if (category == PaymentCategory.Transport)
+    return Icon(
+      Icons.food_bank_rounded,
+      size: 40.0,
+    );
+  else if (category == PaymentCategory.Food)
+    return Icon(
+      Icons.emoji_transportation_rounded,
+      size: 40.0,
+    );
+  else
+    return Icon(
+      Icons.attach_money,
+      size: 50.0,
+    );
 }
 
 String getCategoryName(transactionOrBalance) =>
@@ -50,26 +48,34 @@ String getCategoryName(transactionOrBalance) =>
         transactionOrBalance.paymentCategory.toString().indexOf('.') + 1);
 
 PaymentMethod getPaymentMethod(String method) {
-  if (method == PaymentMethod.gpay.toString())
-    return PaymentMethod.gpay;
-  else if (method == PaymentMethod.paytm.toString())
-    return PaymentMethod.paytm;
+  if ('PaymentMethod.$method' == PaymentMethod.GPay.toString() ||
+      method == PaymentMethod.GPay.toString())
+    return PaymentMethod.GPay;
+  else if ('PaymentMethod.$method' == PaymentMethod.Paytm.toString() ||
+      method == PaymentMethod.Paytm.toString())
+    return PaymentMethod.Paytm;
   else
-    return PaymentMethod.cash;
+    return PaymentMethod.Cash;
 }
 
 PaymentCategory getPaymentCategory(String category) {
-  if (category == PaymentCategory.Food.toString())
+  if ('PaymentCategory.$category' == PaymentCategory.Food.toString() ||
+      category == PaymentCategory.Food.toString())
     return PaymentCategory.Food;
-  else if (category == PaymentCategory.Transport.toString())
+  else if ('PaymentCategory.$category' ==
+          PaymentCategory.Transport.toString() ||
+      category == PaymentCategory.Transport.toString())
     return PaymentCategory.Transport;
   else
     return PaymentCategory.Misc;
 }
 
 ClubTransactionDirection getDirection(String direction) {
-  if (direction == ClubTransactionDirection.incoming.toString())
-    return ClubTransactionDirection.incoming;
-  else
-    return ClubTransactionDirection.outgoing;
+  // Argument is small
+  if ('ClubTransactionDirection.$direction' ==
+          ClubTransactionDirection.Incoming.toString() ||
+      direction == ClubTransactionDirection.Incoming.toString()) {
+    return ClubTransactionDirection.Incoming;
+  } else
+    return ClubTransactionDirection.Outgoing;
 }

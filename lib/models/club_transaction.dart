@@ -23,17 +23,24 @@ class ClubTransaction {
     @required this.transactionDirection,
   });
 
-  factory ClubTransaction.fromMap(Map<String, dynamic> json) => ClubTransaction(
-        id: json[clubTransactionsIdColumn],
-        payer: json[clubTransactionsPayerColumn],
-        payee: json[clubTransactionsPayeeColumn],
-        description: json[clubTransactionsDescriptionColumn],
-        amount: json[clubTransactionsAmountColumn].toDouble(),
-        paymentMethod: getPaymentMethod(json[clubTransactionsPaymentMethodColumn]),
-        dateTime: DateTime.parse(json[clubTransactionsDateTimeColumn]),
-        paymentCategory: getPaymentCategory(json[clubTransactionsPaymentCategoryColumn]),
-        transactionDirection: getDirection(json[clubTransactionsTransactionDirectionColumn]),
-      );
+  factory ClubTransaction.fromMap(Map<String, dynamic> json) {
+    // Big
+    // print(json[clubTransactionsTransactionDirectionColumn]);
+    return ClubTransaction(
+      id: json[clubTransactionsIdColumn],
+      payer: json[clubTransactionsPayerColumn],
+      payee: json[clubTransactionsPayeeColumn],
+      description: json[clubTransactionsDescriptionColumn],
+      amount: json[clubTransactionsAmountColumn].toDouble(),
+      paymentMethod:
+          getPaymentMethod(json[clubTransactionsPaymentMethodColumn]),
+      dateTime: DateTime.parse(json[clubTransactionsDateTimeColumn]),
+      paymentCategory:
+          getPaymentCategory(json[clubTransactionsPaymentCategoryColumn]),
+      transactionDirection:
+          getDirection(json[clubTransactionsTransactionDirectionColumn]),
+    );
+  }
 
   Map<String, dynamic> toMap() => {
         clubTransactionsIdColumn: id,

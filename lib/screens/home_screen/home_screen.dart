@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                 children: Provider.of<ClubTransactionHelper>(context)
                     .clubTransactions
                     .map<Widget>(
-                      (transaction) => RecentClubTransaction(
+                      (ClubTransaction transaction) => RecentClubTransaction(
                         clubTransaction: transaction,
                       ),
                     )

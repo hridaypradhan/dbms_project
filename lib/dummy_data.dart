@@ -7,10 +7,10 @@ ClubTransaction dummyTransaction = ClubTransaction(
   payee: 'SNU',
   description: 'AC recharge',
   amount: 1000,
-  paymentMethod: PaymentMethod.paytm,
+  paymentMethod: PaymentMethod.Paytm,
   dateTime: DateTime.now(),
   paymentCategory: PaymentCategory.Misc,
-  transactionDirection: ClubTransactionDirection.outgoing,
+  transactionDirection: ClubTransactionDirection.Outgoing,
 );
 
 List<ClubTransaction> dummyList = [
