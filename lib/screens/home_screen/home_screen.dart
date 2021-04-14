@@ -1,5 +1,4 @@
 import 'package:dbms_project/database_helpers/club_transaction_helper.dart';
-import 'package:dbms_project/database_helpers/database_helper.dart';
 import 'package:dbms_project/dummy_data.dart';
 import 'package:dbms_project/models/club_transaction.dart';
 import 'package:dbms_project/screens/home_screen/widgets/category_balance_card.dart';
@@ -7,7 +6,6 @@ import 'package:dbms_project/screens/home_screen/widgets/recent_club_transaction
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sqflite/sqflite.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -20,12 +18,16 @@ class HomeScreen extends StatelessWidget {
           children: [
             Container(
               height: screenSize.height / 3.5,
-              child: ListView.builder(
+              child: ListView(
                 scrollDirection: Axis.horizontal,
-                itemCount: dummyCategoryBalanceList.length,
-                itemBuilder: (context, index) => CategoryBalanceCard(
-                  categoryBalance: dummyCategoryBalanceList[index],
-                ),
+                children: Provider.of<ClubTransactionHelper>(context)
+                    .categoryBalances
+                    .map<Widget>(
+                      (CategoryBalance balance) => CategoryBalanceCard(
+                        categoryBalance: balance,
+                      ),
+                    )
+                    .toList(),
               ),
             ),
             Container(

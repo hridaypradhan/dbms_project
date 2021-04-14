@@ -28,12 +28,12 @@ Icon getTransactionIcon(ClubTransactionDirection direction) {
 Icon getPaymentCategoryIcon(PaymentCategory category) {
   if (category == PaymentCategory.Transport)
     return Icon(
-      Icons.food_bank_rounded,
+      Icons.emoji_transportation_rounded,
       size: 40.0,
     );
   else if (category == PaymentCategory.Food)
     return Icon(
-      Icons.emoji_transportation_rounded,
+      Icons.food_bank_rounded,
       size: 40.0,
     );
   else

@@ -45,6 +45,7 @@ class DatabaseHelper {
     return database;
   }
 
+// TODO Remove
   void showClubTransactionTable() async {
     var db = await database;
     List list = await db.rawQuery('select * from $clubTransactionsTable order by id desc');

@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BudgetScreen extends StatefulWidget {
-  @override
-  _BudgetScreenState createState() => _BudgetScreenState();
-}
-
-class _BudgetScreenState extends State<BudgetScreen> {
-
+class BudgetScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

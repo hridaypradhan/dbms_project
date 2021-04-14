@@ -51,6 +51,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // TODO remove
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // DatabaseHelper().showClubTransactionTable();

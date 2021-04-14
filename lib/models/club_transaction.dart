@@ -23,24 +23,20 @@ class ClubTransaction {
     @required this.transactionDirection,
   });
 
-  factory ClubTransaction.fromMap(Map<String, dynamic> json) {
-    // Big
-    // print(json[clubTransactionsTransactionDirectionColumn]);
-    return ClubTransaction(
-      id: json[clubTransactionsIdColumn],
-      payer: json[clubTransactionsPayerColumn],
-      payee: json[clubTransactionsPayeeColumn],
-      description: json[clubTransactionsDescriptionColumn],
-      amount: json[clubTransactionsAmountColumn].toDouble(),
-      paymentMethod:
-          getPaymentMethod(json[clubTransactionsPaymentMethodColumn]),
-      dateTime: DateTime.parse(json[clubTransactionsDateTimeColumn]),
-      paymentCategory:
-          getPaymentCategory(json[clubTransactionsPaymentCategoryColumn]),
-      transactionDirection:
-          getDirection(json[clubTransactionsTransactionDirectionColumn]),
-    );
-  }
+  factory ClubTransaction.fromMap(Map<String, dynamic> json) => ClubTransaction(
+        id: json[clubTransactionsIdColumn],
+        payer: json[clubTransactionsPayerColumn],
+        payee: json[clubTransactionsPayeeColumn],
+        description: json[clubTransactionsDescriptionColumn],
+        amount: json[clubTransactionsAmountColumn].toDouble(),
+        paymentMethod:
+            getPaymentMethod(json[clubTransactionsPaymentMethodColumn]),
+        dateTime: DateTime.parse(json[clubTransactionsDateTimeColumn]),
+        paymentCategory:
+            getPaymentCategory(json[clubTransactionsPaymentCategoryColumn]),
+        transactionDirection:
+            getDirection(json[clubTransactionsTransactionDirectionColumn]),
+      );
 
   Map<String, dynamic> toMap() => {
         clubTransactionsIdColumn: id,
@@ -65,10 +61,14 @@ class CategoryBalance {
   PaymentCategory paymentCategory;
   double amount;
 
-  factory CategoryBalance.fromMap(Map<String, dynamic> json) => CategoryBalance(
-        paymentCategory: json["paymentCategory"],
-        amount: json["amount"].toDouble(),
-      );
+  factory CategoryBalance.fromMap(Map<String, dynamic> json) {
+    print(CategoryBalance.fromMap(json).toMap());
+    return CategoryBalance(
+      paymentCategory:
+          getPaymentCategory(json[clubTransactionsPaymentCategoryColumn]),
+      amount: json["amount"].toDouble(),
+    );
+  }
 
   Map<String, dynamic> toMap() => {
         "paymentCategory": paymentCategory,
