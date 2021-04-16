@@ -1,5 +1,6 @@
 import 'package:dbms_project/enums.dart';
 import 'package:dbms_project/models/balance_item.dart';
+import 'package:dbms_project/models/budget_item.dart';
 import 'package:dbms_project/models/club_collab.dart';
 import 'package:dbms_project/models/club_transaction.dart';
 
@@ -75,4 +76,24 @@ ClubCollab dummyCollab2 = ClubCollab(
 List<ClubCollab> dummyCollabList = [
   dummyCollab,
   dummyCollab2,
+];
+
+BudgetItem dummyBudgetItem = BudgetItem(
+  id: 1,
+  eventName: 'Qissa',
+  amount: 200.0,
+  dateTime: DateTime.now(),
+  description: 'Wow event',
+);
+BudgetItem dummyBudgetItem2 = BudgetItem(
+  id: 2,
+  eventName: 'Conference',
+  amount: 2000.0,
+  dateTime: DateTime.now(),
+  description: 'Wower event',
+);
+
+List<BudgetItem> dummyBudgetItemList = [
+  dummyBudgetItem,
+  dummyBudgetItem2,
 ];

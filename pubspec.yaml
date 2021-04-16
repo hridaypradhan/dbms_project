@@ -28,6 +28,7 @@ dependencies:
   expand_widget: ^2.0.0
   ff_navigation_bar: ^0.1.5
   provider: ^4.0.2
+  simple_coverflow: ^0.0.8
   sqflite: ^2.0.0+3
 
 dev_dependencies:

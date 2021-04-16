@@ -34,18 +34,18 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // TODO remove
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // DatabaseHelper().showClubTransactionTable();
-          var list = Provider.of<ClubTransactionHelper>(
-            context,
-            listen: false,
-          ).clubTransactions;
-          for (var ele in list) {
-            print(ele.toMap());
-          }
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     // DatabaseHelper().showClubTransactionTable();
+      //     var list = Provider.of<ClubTransactionHelper>(
+      //       context,
+      //       listen: false,
+      //     ).clubTransactions;
+      //     for (var ele in list) {
+      //       print(ele.toMap());
+      //     }
+      //   },
+      // ),
       bottomNavigationBar: FFNavigationBar(
         selectedIndex: _barIndex,
         items: [

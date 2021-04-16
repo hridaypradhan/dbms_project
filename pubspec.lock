@@ -130,6 +130,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.3.3"
+  simple_coverflow:
+    dependency: "direct main"
+    description:
+      name: simple_coverflow
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.8"
   sky_engine:
     dependency: transitive
     description: flutter
