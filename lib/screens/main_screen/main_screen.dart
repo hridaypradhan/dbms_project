@@ -112,6 +112,7 @@ class _MainScreenState extends State<MainScreen> {
         },
       ),
       body: PageView(
+        
         controller: _pageController,
         onPageChanged: (index) {
           setState(

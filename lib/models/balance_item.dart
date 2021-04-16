@@ -1,7 +1,7 @@
 class BalanceItem {
   BalanceItem({
     this.gpay,
-    this.paytm,
+    this.paytm, 
     this.cash,
     this.income,
     this.expense,

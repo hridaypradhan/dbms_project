@@ -1,5 +1,6 @@
 import 'package:dbms_project/enums.dart';
 import 'package:dbms_project/models/balance_item.dart';
+import 'package:dbms_project/models/club_collab.dart';
 import 'package:dbms_project/models/club_transaction.dart';
 
 ClubTransaction dummyTransaction = ClubTransaction(
@@ -20,7 +21,7 @@ List<ClubTransaction> dummyList = [
   dummyTransaction,
   dummyTransaction,
   dummyTransaction,
-]; 
+];
 
 CategoryBalance dummyCategoryBalance = CategoryBalance(
   paymentCategory: PaymentCategory.Food,
@@ -46,4 +47,32 @@ List<BalanceItem> dummyBalanceItemList = [
   dummyBalanceItem,
   dummyBalanceItem,
   dummyBalanceItem,
+];
+
+ClubCollab dummyCollab = ClubCollab(
+  clubOne: 'TEDx',
+  clubTwo: 'Aura',
+  eventMonth: 'September',
+  eventName: 'Qissa',
+  resourcesAllocated: 2000.0,
+  pocOne: 'Hriday',
+  pocTwo: 'Shraddha',
+  imageUrl: 'https://ecellsnu.com/assets/img/1234.png',
+  isExpanded: false,
+);
+ClubCollab dummyCollab2 = ClubCollab(
+  clubOne: 'Inspiria',
+  clubTwo: 'E-Cell',
+  eventMonth: 'January',
+  eventName: 'E-Summit',
+  resourcesAllocated: 4000.0,
+  pocOne: 'Hriday',
+  pocTwo: 'Shraddha',
+  imageUrl: 'https://ecellsnu.com/assets/img/1234.png',
+  isExpanded: false,
+);
+
+List<ClubCollab> dummyCollabList = [
+  dummyCollab,
+  dummyCollab2,
 ];

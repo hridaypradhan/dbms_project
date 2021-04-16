@@ -5,7 +5,7 @@ class BudgetItem {
         this.dateTime,
         this.description,
     });
-
+ 
     String eventName;
     double amount;
     DateTime dateTime;
