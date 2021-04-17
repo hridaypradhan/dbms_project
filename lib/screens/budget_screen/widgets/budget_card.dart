@@ -26,13 +26,7 @@ class BudgetCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text(
-              budgetItem.id.toString(),
-              style: TextStyle(
-                fontSize: 30.0,
-                color: Colors.grey,
-              ),
-            ),
+            
             FittedBox(
               child: Text(
                 budgetItem.eventName,

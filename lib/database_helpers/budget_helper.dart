@@ -17,17 +17,17 @@ class BudgetHelper extends ChangeNotifier {
       '$budgetTable',
       budgetItem.toMap(),
     );
-    
+
     getBudgetItemsFromTable();
     print('Budget insertion result : $result');
   }
 
-  void deleteBudgetItem(String id) async {
+  void deleteBudgetItem(String eventName) async {
     var db = await _databaseHelper.database;
     var result = await db.delete(
       '$budgetTable',
-      where: '$budgetIdColumn = ?',
-      whereArgs: [id],
+      where: '$budgetEventNameColumn = ?',
+      whereArgs: [eventName],
     );
     getBudgetItemsFromTable();
     print('Deletion result : $result');
@@ -43,6 +43,15 @@ class BudgetHelper extends ChangeNotifier {
         BudgetItem.fromMap(element),
       ),
     );
+    if (_budgetItems.length == 1)
+      _budgetItems.add(
+        BudgetItem(
+          dateTime: DateTime.now(),
+          amount: 0.0,
+          eventName: 'Sample Event',
+          description: 'Add more events!',
+        ),
+      );
     notifyListeners();
   }
 }

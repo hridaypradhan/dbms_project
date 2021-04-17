@@ -17,7 +17,6 @@ final String clubTransactionsIdColumn = 'id';
 final String clubCollabsTable = 'clubCollabsTable';
 
 final String budgetTable = 'budgetTable';
-final String budgetIdColumn = 'id';
 final String budgetEventNameColumn = 'eventName';
 final String budgetAmountColumn = 'amount';
 final String budgetDateTimeColumn = 'dateTime';

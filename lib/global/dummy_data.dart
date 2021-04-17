@@ -79,14 +79,12 @@ List<ClubCollab> dummyCollabList = [
 ];
 
 BudgetItem dummyBudgetItem = BudgetItem(
-  id: 1,
   eventName: 'Qissa',
   amount: 200.0,
   dateTime: DateTime.now(),
   description: 'Wow event',
 );
 BudgetItem dummyBudgetItem2 = BudgetItem(
-  id: 2,
   eventName: 'Conference',
   amount: 2000.0,
   dateTime: DateTime.now(),

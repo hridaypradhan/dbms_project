@@ -44,7 +44,6 @@ class DatabaseHelper {
         );
         await db.execute('''
               create table $budgetTable (
-                $budgetIdColumn integer primary key autoincrement,
                 $budgetEventNameColumn text,
                 $budgetAmountColumn decimal,
                 $budgetDateTimeColumn text,
@@ -70,7 +69,7 @@ class DatabaseHelper {
   void showBudgetTable() async {
     var db = await database;
     List list =
-        await db.rawQuery('select * from $budgetTable order by id');
+        await db.rawQuery('select * from $budgetTable order by dateTime desc');
     print(list);
   }
 }
