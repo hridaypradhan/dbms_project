@@ -1,4 +1,4 @@
-import 'package:dbms_project/global/strings.dart';
+import 'package:dbms_project/global/constants.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {

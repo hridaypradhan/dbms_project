@@ -1,6 +1,5 @@
 import 'package:dbms_project/database_helpers/database_helper.dart';
-import 'package:dbms_project/global/functions.dart';
-import 'package:dbms_project/global/strings.dart';
+import 'package:dbms_project/global/constants.dart';
 import 'package:dbms_project/global/enums.dart';
 import 'package:dbms_project/models/balance_item.dart';
 import 'package:flutter/material.dart';

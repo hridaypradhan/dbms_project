@@ -1,5 +1,5 @@
 import 'package:dbms_project/database_helpers/balances_helper.dart';
-import 'package:dbms_project/global/functions.dart';
+import 'package:dbms_project/global/constants.dart';
 import 'package:dbms_project/database_helpers/club_transaction_helper.dart';
 import 'package:dbms_project/global/enums.dart';
 import 'package:dbms_project/models/club_transaction.dart';

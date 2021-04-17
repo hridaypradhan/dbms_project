@@ -1,6 +1,7 @@
-import 'package:dbms_project/global/functions.dart';
-import 'package:dbms_project/global/strings.dart';
+import 'package:dbms_project/database_helpers/balances_helper.dart';
+import 'package:dbms_project/global/constants.dart';
 import 'package:dbms_project/database_helpers/database_helper.dart';
+import 'package:dbms_project/global/dummy_data.dart';
 import 'package:dbms_project/global/enums.dart';
 import 'package:dbms_project/models/club_transaction.dart';
 import 'package:flutter/material.dart';
@@ -10,24 +11,6 @@ class ClubTransactionHelper extends ChangeNotifier {
     getTransactionsFromTable();
   }
   DatabaseHelper _databaseHelper = DatabaseHelper();
-  static CategoryBalance _foodBalance = CategoryBalance(
-    paymentCategory: PaymentCategory.Food,
-    amount: 0,
-  );
-  static CategoryBalance _transportBalance = CategoryBalance(
-    paymentCategory: PaymentCategory.Transport,
-    amount: 0,
-  );
-  static CategoryBalance _miscBalance = CategoryBalance(
-    paymentCategory: PaymentCategory.Misc,
-    amount: 0,
-  );
-
-  static List<CategoryBalance> defaultBalanceList = [
-    _foodBalance,
-    _transportBalance,
-    _miscBalance,
-  ];
   List<ClubTransaction> _clubTransactions = [];
   List<CategoryBalance> _categoryBalances = defaultBalanceList;
 
