@@ -27,6 +27,7 @@ class ClubTransactionHelper extends ChangeNotifier {
     _updateCategoryBalances();
     notifyListeners();
   }
+  //TODO Remove
 
   void _updateCategoryBalances() async {
     var db = await _databaseHelper.database;
