@@ -1,3 +1,4 @@
+import 'package:dbms_project/database_helpers/balances_helper.dart';
 import 'package:dbms_project/global/constants.dart';
 import 'package:dbms_project/database_helpers/database_helper.dart';
 import 'package:dbms_project/global/dummy_data.dart';
@@ -10,6 +11,7 @@ class ClubTransactionHelper extends ChangeNotifier {
     getTransactionsFromTable();
   }
   DatabaseHelper _databaseHelper = DatabaseHelper();
+  BalancesHelper _balancesHelper = BalancesHelper();
   List<ClubTransaction> _clubTransactions = [];
   List<CategoryBalance> _categoryBalances = dummyCategoryBalanceList;
 
@@ -24,18 +26,20 @@ class ClubTransactionHelper extends ChangeNotifier {
       ),
     );
     _updateCategoryBalances();
+    _balancesHelper.getBalancesFromTable();
     notifyListeners();
   }
 
   void _updateCategoryBalances() async {
     var db = await _databaseHelper.database;
-_categoryBalances=[];
+    _categoryBalances = [];
     var result = await db.rawQuery(
       '''select $clubTransactionsPaymentCategoryColumn,
          sum(case when $clubTransactionsTransactionDirectionColumn = "${ClubTransactionDirection.Incoming}" then $clubTransactionsAmountColumn else 0 end) - 
-         sum(case when $clubTransactionsTransactionDirectionColumn = "${ClubTransactionDirection.Outgoing}" then $clubTransactionsAmountColumn else 0 end) as $clubTransactionsAmountColumn 
+         sum(case when $clubTransactionsTransactionDirectionColumn = "${ClubTransactionDirection.Outgoing}" then $clubTransactionsAmountColumn else 0 end) 
+         as $clubTransactionsAmountColumn 
          from $clubTransactionsTable 
-         group by $clubTransactionsPaymentCategoryColumn;''',
+         group by $clubTransactionsPaymentCategoryColumn''',
     );
     result.forEach(
       (element) {
@@ -51,7 +55,6 @@ _categoryBalances=[];
         );
       },
     );
-    notifyListeners();
   }
 
   List<ClubTransaction> get clubTransactions => _clubTransactions;

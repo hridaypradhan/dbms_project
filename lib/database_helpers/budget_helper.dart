@@ -11,7 +11,7 @@ class BudgetHelper extends ChangeNotifier {
   List<BudgetItem> _budgetItems = [];
   List<BudgetItem> get budgetItems => _budgetItems;
 
-  void insertTransaction(BudgetItem budgetItem) async {
+  void insertBudgetItem(BudgetItem budgetItem) async {
     var db = await _databaseHelper.database;
     var result = await db.insert(
       '$budgetTable',

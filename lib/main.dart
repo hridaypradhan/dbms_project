@@ -1,3 +1,4 @@
+import 'package:dbms_project/database_helpers/balances_helper.dart';
 import 'package:dbms_project/database_helpers/budget_helper.dart';
 import 'package:dbms_project/database_helpers/club_transaction_helper.dart';
 import 'package:dbms_project/database_helpers/database_helper.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         DeviceOrientation.portraitUp,
       ],
     );
-    
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<ClubTransactionHelper>(
@@ -30,6 +31,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<BudgetHelper>(
           create: (context) => BudgetHelper(),
+        ),
+        ChangeNotifierProvider<BalancesHelper>(
+          create: (context) => BalancesHelper(),
         ),
       ],
       child: MaterialApp(

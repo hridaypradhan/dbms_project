@@ -115,7 +115,7 @@ class _AddBudgetItemFormState extends State<AddBudgetItemForm> {
               Provider.of<BudgetHelper>(
                 context,
                 listen: false,
-              ).insertTransaction(newBudgetItem);
+              ).insertBudgetItem(newBudgetItem);
               _clearFields();
               Navigator.pop(context);
             } catch (e) {

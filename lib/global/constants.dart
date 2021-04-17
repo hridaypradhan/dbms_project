@@ -22,6 +22,13 @@ final String budgetAmountColumn = 'amount';
 final String budgetDateTimeColumn = 'dateTime';
 final String budgetDescriptionColumn = 'description';
 
+final String balancesGpayColumn = 'gpay';
+final String balancesPaytmColumn = 'paytm';
+final String balancesCashColumn = 'cash';
+final String balancesIncomeColumn = 'incoming';
+final String balancesExpenseColumn = 'expense';
+final String balancesTotalBalanceColumn = 'totalBalance';
+
 Icon getTransactionIcon(ClubTransactionDirection direction) {
   return direction == ClubTransactionDirection.Incoming
       ? Icon(
@@ -88,5 +95,4 @@ ClubTransactionDirection getDirection(String direction) {
     return ClubTransactionDirection.Outgoing;
 }
 
-  double convertToDouble(int n) => n.toDouble();
-
+double convertToDouble(int n) => n.toDouble();

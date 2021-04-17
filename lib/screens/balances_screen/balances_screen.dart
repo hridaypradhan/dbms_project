@@ -1,18 +1,14 @@
+import 'package:dbms_project/database_helpers/balances_helper.dart';
 import 'package:dbms_project/global/dummy_data.dart';
 import 'package:dbms_project/screens/balances_screen/widgets/balance_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class BalancesScreen extends StatefulWidget {
-  static final id = 'balances_screen';
-  @override
-  _BalancesScreenState createState() => _BalancesScreenState();
-}
-
-class _BalancesScreenState extends State<BalancesScreen> {
+class BalancesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
-
+    var _balances = Provider.of<BalancesHelper>(context).balances;
     return SafeArea(
       child: Scaffold(
         body: Center(
@@ -29,7 +25,7 @@ class _BalancesScreenState extends State<BalancesScreen> {
                 ),
                 child: FittedBox(
                   child: Text(
-                    'Total Balance: ₹${dummyBalanceItem.totalBalance}',
+                    'Total Balance: ₹${_balances.totalBalance}',
                     style: TextStyle(
                       fontSize: 30.0,
                     ),
@@ -52,7 +48,7 @@ class _BalancesScreenState extends State<BalancesScreen> {
                     ),
                     child: FittedBox(
                       child: Text(
-                        'Income \n₹${dummyBalanceItem.income}',
+                        'Income \n₹${_balances.income}',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 30.0,
@@ -73,7 +69,7 @@ class _BalancesScreenState extends State<BalancesScreen> {
                     ),
                     child: FittedBox(
                       child: Text(
-                        'Expense \n₹${dummyBalanceItem.expense}',
+                        'Expense \n₹${_balances.expense}',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 40.0,
@@ -88,15 +84,15 @@ class _BalancesScreenState extends State<BalancesScreen> {
                   child: Column(
                     children: [
                       BalanceCard(
-                        amount: dummyBalanceItem.gpay,
+                        amount: _balances.gpay,
                         paymentMethod: 'gpay',
                       ),
                       BalanceCard(
-                        amount: dummyBalanceItem.paytm,
+                        amount: _balances.paytm,
                         paymentMethod: 'paytm',
                       ),
                       BalanceCard(
-                        amount: dummyBalanceItem.cash,
+                        amount: _balances.cash,
                         paymentMethod: 'cash',
                       ),
                     ],

@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
+
 class BalanceItem {
   BalanceItem({
-    this.gpay,
-    this.paytm, 
-    this.cash,
+    @required this.gpay,
+    @required this.paytm,
+    @required this.cash,
     this.income,
     this.expense,
     this.totalBalance,
@@ -10,16 +12,18 @@ class BalanceItem {
 
   double gpay, paytm, cash, income, expense, totalBalance;
 
-  factory BalanceItem.fromJson(Map<String, dynamic> json) => BalanceItem(
+  factory BalanceItem.fromMap(Map<String, dynamic> json) => BalanceItem(
         gpay: json["gpay"].toDouble(),
         paytm: json["paytm"].toDouble(),
         cash: json["cash"].toDouble(),
         income: json["income"].toDouble(),
         expense: json["expense"].toDouble(),
-        totalBalance: json["totalBalance"].toDouble(),
+        totalBalance: json["gpay"].toDouble() +
+            json["paytm"].toDouble() +
+            json["cash"].toDouble(),
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toMap() => {
         "gpay": gpay,
         "paytm": paytm,
         "cash": cash,

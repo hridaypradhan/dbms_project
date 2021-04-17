@@ -12,7 +12,7 @@ class BudgetScreen extends StatelessWidget {
     var screenSize = MediaQuery.of(context).size;
     List<BudgetItem> _budgetItems =
         Provider.of<BudgetHelper>(context).budgetItems;
-    
+
     return SafeArea(
       child: Scaffold(
         body: Center(
@@ -37,12 +37,11 @@ class BudgetScreen extends StatelessWidget {
                           Provider.of<BudgetHelper>(
                             context,
                             listen: false,
-                          ).deleteBudgetItem(_budgetItems[item].eventName);
+                          ).deleteBudgetItem(_budgetItems[item % _budgetItems.length].eventName);
                         },
                         itemBuilder: (BuildContext context, int index) =>
                             BudgetCard(
-                          budgetItem:
-                              _budgetItems[index % _budgetItems.length],
+                          budgetItem: _budgetItems[index % _budgetItems.length],
                         ),
                       ),
                     )
