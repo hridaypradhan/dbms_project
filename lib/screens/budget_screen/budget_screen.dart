@@ -12,6 +12,15 @@ class BudgetScreen extends StatelessWidget {
     var screenSize = MediaQuery.of(context).size;
     List<BudgetItem> _budgetItems =
         Provider.of<BudgetHelper>(context).budgetItems;
+    if (_budgetItems.length == 1)
+      _budgetItems.add(
+        BudgetItem(
+          dateTime: DateTime.now(),
+          amount: 0.0,
+          eventName: 'Sample Event',
+          description: 'Add more events!',
+        ),
+      );
     return SafeArea(
       child: Scaffold(
         body: Center(
@@ -31,7 +40,6 @@ class BudgetScreen extends StatelessWidget {
               _budgetItems.isNotEmpty
                   ? Expanded(
                       child: CoverFlow(
-                        // TODO add delete function here
                         dismissedCallback: (item, direction) {
                           Provider.of<BudgetHelper>(
                             context,

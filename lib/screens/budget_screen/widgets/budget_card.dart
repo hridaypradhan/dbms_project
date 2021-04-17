@@ -20,6 +20,7 @@ class BudgetCard extends StatelessWidget {
       ),
       width: screenSize.width * 0.8,
       height: screenSize.height * 0.6,
+      padding: EdgeInsets.all(screenSize.width * 0.03),
       margin: EdgeInsets.all(screenSize.width * 0.03),
       child: Center(
         child: Column(

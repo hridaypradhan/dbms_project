@@ -17,6 +17,7 @@ class BudgetHelper extends ChangeNotifier {
       '$budgetTable',
       budgetItem.toMap(),
     );
+    
     getBudgetItemsFromTable();
     print('Budget insertion result : $result');
   }
