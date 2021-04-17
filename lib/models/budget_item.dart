@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
+
 class BudgetItem {
   BudgetItem({
     this.id,
-    this.eventName,
-    this.amount,
-    this.dateTime,
+    @required this.eventName,
+    @required this.amount,
+    @required this.dateTime,
     this.description,
   });
   int id;

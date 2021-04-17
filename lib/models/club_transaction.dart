@@ -1,5 +1,5 @@
-import 'package:dbms_project/constants.dart';
-import 'package:dbms_project/enums.dart';
+import 'package:dbms_project/global/constants.dart';
+import 'package:dbms_project/global/enums.dart';
 import 'package:flutter/material.dart';
 
 class ClubTransaction {

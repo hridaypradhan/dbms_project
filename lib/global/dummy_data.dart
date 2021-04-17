@@ -1,4 +1,4 @@
-import 'package:dbms_project/enums.dart';
+import 'package:dbms_project/global/enums.dart';
 import 'package:dbms_project/models/balance_item.dart';
 import 'package:dbms_project/models/budget_item.dart';
 import 'package:dbms_project/models/club_collab.dart';

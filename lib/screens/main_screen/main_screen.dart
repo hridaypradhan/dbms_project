@@ -1,6 +1,8 @@
 import 'package:dbms_project/database_helpers/club_transaction_helper.dart';
+import 'package:dbms_project/database_helpers/database_helper.dart';
 import 'package:dbms_project/screens/balances_screen/balances_screen.dart';
 import 'package:dbms_project/screens/budget_screen/budget_screen.dart';
+import 'package:dbms_project/screens/budget_screen/widgets/add_budget_item_form.dart';
 import 'package:dbms_project/screens/collabs_screen/collabs_screen.dart';
 import 'package:dbms_project/screens/home_screen/home_screen.dart';
 import 'package:dbms_project/screens/main_screen/widgets/add_transaction_form.dart';
@@ -34,18 +36,11 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // TODO remove
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     // DatabaseHelper().showClubTransactionTable();
-      //     var list = Provider.of<ClubTransactionHelper>(
-      //       context,
-      //       listen: false,
-      //     ).clubTransactions;
-      //     for (var ele in list) {
-      //       print(ele.toMap());
-      //     }
-      //   },
-      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          DatabaseHelper().showBudgetTable();
+        },
+      ),
       bottomNavigationBar: FFNavigationBar(
         selectedIndex: _barIndex,
         items: [
@@ -84,26 +79,27 @@ class _MainScreenState extends State<MainScreen> {
               else if (index < 2) _pageController.jumpToPage(index);
               _barIndex = index;
               if (index == 2) {
-                showModalBottomSheet(
-                  isScrollControlled: true,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20.0),
-                      topRight: Radius.circular(20.0),
+                if (_pageController.page != 1)
+                  showModalBottomSheet(
+                    isScrollControlled: true,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20.0),
+                        topRight: Radius.circular(20.0),
+                      ),
                     ),
-                  ),
-                  context: context,
-                  builder: (context) {
-                    return StatefulBuilder(
-                      builder: (context, setState) {
-                        return Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: _getForm(prevPage),
-                        );
-                      },
-                    );
-                  },
-                );
+                    context: context,
+                    builder: (context) {
+                      return StatefulBuilder(
+                        builder: (context, setState) {
+                          return Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: _getForm(prevPage),
+                          );
+                        },
+                      );
+                    },
+                  );
                 _pageController.jumpToPage(prevPage);
                 _barIndex = prevPage >= 2 ? prevPage + 1 : prevPage;
               }
@@ -112,7 +108,6 @@ class _MainScreenState extends State<MainScreen> {
         },
       ),
       body: PageView(
-        
         controller: _pageController,
         onPageChanged: (index) {
           setState(
@@ -132,6 +127,8 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   _getForm(int prevPage) {
-    if (_pageController.page == 0) return AddTransactionForm();
+    if (_pageController.page == 0)
+      return AddTransactionForm();
+    else if (_pageController.page == 3) return AddBudgetItemForm();
   }
 }

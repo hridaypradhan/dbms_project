@@ -11,9 +11,16 @@ class BudgetCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.black,
         borderRadius: BorderRadius.circular(20.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black,
+            blurRadius: 3.0,
+          ),
+        ],
       ),
       width: screenSize.width * 0.8,
       height: screenSize.height * 0.6,
+      margin: EdgeInsets.all(screenSize.width * 0.03),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

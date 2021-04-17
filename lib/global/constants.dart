@@ -1,4 +1,4 @@
-import 'package:dbms_project/enums.dart';
+import 'package:dbms_project/global/enums.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +13,15 @@ final String clubTransactionsDateTimeColumn = 'dateTime';
 final String clubTransactionsAmountColumn = 'amount';
 final String clubTransactionsPaymentCategoryColumn = 'paymentCategory';
 final String clubTransactionsIdColumn = 'id';
+
+final String clubCollabsTable = 'clubCollabsTable';
+
+final String budgetTable = 'budgetTable';
+final String budgetIdColumn = 'id';
+final String budgetEventNameColumn = 'eventName';
+final String budgetAmountColumn = 'amount';
+final String budgetDateTimeColumn = 'dateTime';
+final String budgetDescriptionColumn = 'description';
 
 Icon getTransactionIcon(ClubTransactionDirection direction) {
   return direction == ClubTransactionDirection.Incoming
@@ -72,7 +81,6 @@ PaymentCategory getPaymentCategory(String category) {
 }
 
 ClubTransactionDirection getDirection(String direction) {
-  // Argument is small
   if ('ClubTransactionDirection.$direction' ==
           ClubTransactionDirection.Incoming.toString() ||
       direction == ClubTransactionDirection.Incoming.toString()) {

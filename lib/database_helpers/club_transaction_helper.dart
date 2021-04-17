@@ -1,8 +1,8 @@
-import 'package:dbms_project/constants.dart';
+import 'package:dbms_project/global/constants.dart';
 import 'package:dbms_project/database_helpers/database_helper.dart';
-import 'package:dbms_project/dummy_data.dart';
+import 'package:dbms_project/global/dummy_data.dart';
 import 'package:dbms_project/models/club_transaction.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class ClubTransactionHelper extends ChangeNotifier {
   ClubTransactionHelper() {
@@ -15,8 +15,8 @@ class ClubTransactionHelper extends ChangeNotifier {
   void getTransactionsFromTable() async {
     _clubTransactions = [];
     var db = await _databaseHelper.database;
-    var result = await db
-        .rawQuery('select * from $clubTransactionsTable order by $clubTransactionsDateTimeColumn desc');
+    var result = await db.rawQuery(
+        'select * from $clubTransactionsTable order by $clubTransactionsDateTimeColumn desc');
     result.forEach(
       (element) => _clubTransactions.add(
         ClubTransaction.fromMap(element),
@@ -35,8 +35,8 @@ class ClubTransactionHelper extends ChangeNotifier {
       transaction.toMap(),
     );
     getTransactionsFromTable();
-    print('Insertion result : $result');
-  }
+    print('Club Transaction insertion result : $result');
+  } 
 
   void deleteTransaction(String id) async {
     var db = await _databaseHelper.database;

@@ -1,4 +1,4 @@
-import 'package:dbms_project/constants.dart';
+import 'package:dbms_project/global/constants.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
@@ -39,7 +39,20 @@ class DatabaseHelper {
                 $clubTransactionsPaymentCategoryColumn text,
                 $clubTransactionsTransactionDirectionColumn text
               )
-        ''');
+        ''').then(
+          (value) => print('Club Transactions Table created!'),
+        );
+        await db.execute('''
+              create table $budgetTable (
+                $budgetIdColumn integer primary key autoincrement,
+                $budgetEventNameColumn text,
+                $budgetAmountColumn decimal,
+                $budgetDateTimeColumn text,
+                $budgetDescriptionColumn text
+              )
+        ''').then(
+          (value) => print('Budget Table created!'),
+        );
       },
     );
     return database;
@@ -48,7 +61,16 @@ class DatabaseHelper {
 // TODO Remove
   void showClubTransactionTable() async {
     var db = await database;
-    List list = await db.rawQuery('select * from $clubTransactionsTable order by id desc');
+    List list = await db
+        .rawQuery('select * from $clubTransactionsTable order by id desc');
+    print(list);
+  }
+
+  // TODO remove
+  void showBudgetTable() async {
+    var db = await database;
+    List list =
+        await db.rawQuery('select * from $budgetTable order by id');
     print(list);
   }
 }
