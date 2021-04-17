@@ -1,4 +1,4 @@
-import 'package:dbms_project/global/constants.dart';
+import 'package:dbms_project/global/functions.dart';
 import 'package:dbms_project/models/club_transaction.dart';
 import 'package:flutter/material.dart';
 

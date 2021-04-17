@@ -1,11 +1,8 @@
-import 'package:dbms_project/models/club_collab.dart';
 import 'package:dbms_project/screens/collabs_screen/widgets/collab_unit.dart';
 import 'package:flutter/material.dart';
 import 'package:dbms_project/global/dummy_data.dart';
 
 class CollabsScreen extends StatefulWidget {
-  static final id = 'collabs_screen';
-
   @override
   _CollabsScreenState createState() => _CollabsScreenState();
 }
