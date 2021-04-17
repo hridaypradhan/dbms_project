@@ -20,9 +20,9 @@ class BudgetScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: EdgeInsets.all(screenSize.width * 0.2),
+                padding: EdgeInsets.all(screenSize.width * 0.15),
                 child: Text(
-                  'Budget',
+                  'Tentative Budget',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 40.0,
@@ -32,6 +32,7 @@ class BudgetScreen extends StatelessWidget {
               _budgetItems.isNotEmpty
                   ? Expanded(
                       child: CoverFlow(
+                        itemCount: _budgetItems.length,
                         dismissedCallback: (item, direction) {
                           Provider.of<BudgetHelper>(
                             context,
@@ -41,7 +42,7 @@ class BudgetScreen extends StatelessWidget {
                         itemBuilder: (BuildContext context, int index) =>
                             BudgetCard(
                           budgetItem:
-                              _budgetItems[index % dummyBudgetItemList.length],
+                              _budgetItems[index % _budgetItems.length],
                         ),
                       ),
                     )

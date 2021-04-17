@@ -2,7 +2,6 @@ import 'package:dbms_project/database_helpers/club_transaction_helper.dart';
 import 'package:dbms_project/models/club_transaction.dart';
 import 'package:dbms_project/screens/home_screen/widgets/category_balance_card.dart';
 import 'package:dbms_project/screens/home_screen/widgets/recent_club_transaction.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,7 +26,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     )
                     .toList(),
-              ), 
+              ),
             ),
             Container(
               margin: EdgeInsets.fromLTRB(20.0, 10.0, 10.0, 20.0),
@@ -58,29 +57,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-/*
-Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            TextButton(
-              child: Text('Insert'),
-              onPressed: () {
-                _clubTransactionHelper.insertTransaction(dummyTransaction);
-              },
-            ),
-            TextButton(
-              onPressed: () {
-                _clubTransactionHelper.deleteTransaction('Hriday');
-              },
-              child: Text('Delete'),
-            ),
-            TextButton(
-              onPressed: () {
-                DatabaseHelper().showTables();
-              },
-              child: Text('Show'),
-            ),
-          ],
-        ),
-*/

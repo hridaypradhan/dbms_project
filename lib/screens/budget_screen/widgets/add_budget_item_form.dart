@@ -87,10 +87,9 @@ class _AddBudgetItemFormState extends State<AddBudgetItemForm> {
           ),
         ),
         DateTimePicker(
-          
           type: DateTimePickerType.dateTimeSeparate,
-          firstDate: DateTime(2021),
-          lastDate: DateTime.now(),
+          firstDate: DateTime.now(),
+          lastDate: DateTime(DateTime.now().year + 2),
           dateHintText: 'Tentative Event Date',
           timeHintText: 'Time',
           onChanged: (value) {

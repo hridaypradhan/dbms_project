@@ -34,11 +34,11 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // TODO remove
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          DatabaseHelper().showBudgetTable();
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     DatabaseHelper().showClubTransactionTable();
+      //   },
+      // ),
       bottomNavigationBar: FFNavigationBar(
         selectedIndex: _barIndex,
         items: [

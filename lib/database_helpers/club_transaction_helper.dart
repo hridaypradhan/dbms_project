@@ -1,6 +1,7 @@
 import 'package:dbms_project/global/constants.dart';
 import 'package:dbms_project/database_helpers/database_helper.dart';
 import 'package:dbms_project/global/dummy_data.dart';
+import 'package:dbms_project/global/enums.dart';
 import 'package:dbms_project/models/club_transaction.dart';
 import 'package:flutter/material.dart';
 
@@ -22,6 +23,34 @@ class ClubTransactionHelper extends ChangeNotifier {
         ClubTransaction.fromMap(element),
       ),
     );
+    _updateCategoryBalances();
+    notifyListeners();
+  }
+
+  void _updateCategoryBalances() async {
+    var db = await _databaseHelper.database;
+_categoryBalances=[];
+    var result = await db.rawQuery(
+      '''select $clubTransactionsPaymentCategoryColumn,
+         sum(case when $clubTransactionsTransactionDirectionColumn = "${ClubTransactionDirection.Incoming}" then $clubTransactionsAmountColumn else 0 end) - 
+         sum(case when $clubTransactionsTransactionDirectionColumn = "${ClubTransactionDirection.Outgoing}" then $clubTransactionsAmountColumn else 0 end) as $clubTransactionsAmountColumn 
+         from $clubTransactionsTable 
+         group by $clubTransactionsPaymentCategoryColumn;''',
+    );
+    result.forEach(
+      (element) {
+        _categoryBalances.add(
+          CategoryBalance(
+            paymentCategory: getPaymentCategory(
+              element['$clubTransactionsPaymentCategoryColumn'],
+            ),
+            amount: convertToDouble(
+              element['$clubTransactionsAmountColumn'],
+            ),
+          ),
+        );
+      },
+    );
     notifyListeners();
   }
 
@@ -36,7 +65,7 @@ class ClubTransactionHelper extends ChangeNotifier {
     );
     getTransactionsFromTable();
     print('Club Transaction insertion result : $result');
-  } 
+  }
 
   void deleteTransaction(String id) async {
     var db = await _databaseHelper.database;

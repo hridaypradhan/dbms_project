@@ -87,3 +87,6 @@ ClubTransactionDirection getDirection(String direction) {
   } else
     return ClubTransactionDirection.Outgoing;
 }
+
+  double convertToDouble(int n) => n.toDouble();
+

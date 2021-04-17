@@ -29,12 +29,14 @@ class CategoryBalanceCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           getPaymentCategoryIcon(categoryBalance.paymentCategory),
-          Text(
-            '₹${categoryBalance.amount}',
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 40.0,
+          FittedBox(
+            child: Text(
+              '₹${categoryBalance.amount}',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 40.0,
+              ),
             ),
           ),
           Text(
