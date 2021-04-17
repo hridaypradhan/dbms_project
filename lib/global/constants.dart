@@ -1,4 +1,5 @@
 import 'package:dbms_project/global/enums.dart';
+import 'package:dbms_project/models/club_transaction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -63,6 +64,11 @@ String getCategoryName(transactionOrBalance) =>
     transactionOrBalance.paymentCategory.toString().substring(
         transactionOrBalance.paymentCategory.toString().indexOf('.') + 1);
 
+String getPaymentMethodName(ClubTransaction transaction) =>
+    transaction.paymentMethod
+        .toString()
+        .substring(transaction.paymentMethod.toString().indexOf('.') + 1);
+
 PaymentMethod getPaymentMethod(String method) {
   if ('PaymentMethod.$method' == PaymentMethod.GPay.toString() ||
       method == PaymentMethod.GPay.toString())
@@ -96,3 +102,22 @@ ClubTransactionDirection getDirection(String direction) {
 }
 
 double convertToDouble(int n) => n.toDouble();
+
+CategoryBalance foodBalance = CategoryBalance(
+  paymentCategory: PaymentCategory.Food,
+  amount: 0,
+);
+CategoryBalance transportBalance = CategoryBalance(
+  paymentCategory: PaymentCategory.Transport,
+  amount: 0,
+);
+CategoryBalance miscBalance = CategoryBalance(
+  paymentCategory: PaymentCategory.Misc,
+  amount: 0,
+);
+
+List<CategoryBalance> defaultBalanceList = [
+  foodBalance,
+  transportBalance,
+  miscBalance,
+];

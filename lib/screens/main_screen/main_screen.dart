@@ -4,7 +4,7 @@ import 'package:dbms_project/screens/budget_screen/budget_screen.dart';
 import 'package:dbms_project/screens/budget_screen/widgets/add_budget_item_form.dart';
 import 'package:dbms_project/screens/collabs_screen/collabs_screen.dart';
 import 'package:dbms_project/screens/home_screen/home_screen.dart';
-import 'package:dbms_project/screens/main_screen/widgets/add_transaction_form.dart';
+import 'package:dbms_project/screens/home_screen/widgets/add_transaction_form.dart';
 import 'package:ff_navigation_bar/ff_navigation_bar.dart';
 import 'package:flutter/material.dart';
 

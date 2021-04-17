@@ -1,5 +1,4 @@
 import 'package:dbms_project/database_helpers/budget_helper.dart';
-import 'package:dbms_project/global/dummy_data.dart';
 import 'package:dbms_project/models/budget_item.dart';
 import 'package:dbms_project/screens/budget_screen/widgets/budget_card.dart';
 import 'package:flutter/material.dart';

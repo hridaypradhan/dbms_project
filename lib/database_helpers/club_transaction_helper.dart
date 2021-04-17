@@ -11,9 +11,8 @@ class ClubTransactionHelper extends ChangeNotifier {
     getTransactionsFromTable();
   }
   DatabaseHelper _databaseHelper = DatabaseHelper();
-  BalancesHelper _balancesHelper = BalancesHelper();
   List<ClubTransaction> _clubTransactions = [];
-  List<CategoryBalance> _categoryBalances = dummyCategoryBalanceList;
+  List<CategoryBalance> _categoryBalances = defaultBalanceList;
 
   void getTransactionsFromTable() async {
     _clubTransactions = [];
@@ -26,7 +25,6 @@ class ClubTransactionHelper extends ChangeNotifier {
       ),
     );
     _updateCategoryBalances();
-    _balancesHelper.getBalancesFromTable();
     notifyListeners();
   }
 
@@ -41,20 +39,32 @@ class ClubTransactionHelper extends ChangeNotifier {
          from $clubTransactionsTable 
          group by $clubTransactionsPaymentCategoryColumn''',
     );
-    result.forEach(
-      (element) {
-        _categoryBalances.add(
-          CategoryBalance(
-            paymentCategory: getPaymentCategory(
-              element['$clubTransactionsPaymentCategoryColumn'],
+    if (result.isEmpty)
+      _categoryBalances = defaultBalanceList;
+    else
+      result.forEach(
+        (element) {
+          _categoryBalances.add(
+            CategoryBalance(
+              paymentCategory: getPaymentCategory(
+                element['$clubTransactionsPaymentCategoryColumn'],
+              ),
+              amount: convertToDouble(
+                element['$clubTransactionsAmountColumn'],
+              ),
             ),
-            amount: convertToDouble(
-              element['$clubTransactionsAmountColumn'],
-            ),
-          ),
-        );
-      },
-    );
+          );
+        },
+      );
+    if (!_categoryBalances
+        .any((element) => element.paymentCategory == PaymentCategory.Food))
+      _categoryBalances.add(defaultBalanceList[0]);
+    if (!_categoryBalances
+        .any((element) => element.paymentCategory == PaymentCategory.Transport))
+      _categoryBalances.add(defaultBalanceList[1]);
+    if (!_categoryBalances
+        .any((element) => element.paymentCategory == PaymentCategory.Misc))
+      _categoryBalances.add(defaultBalanceList[2]);
   }
 
   List<ClubTransaction> get clubTransactions => _clubTransactions;

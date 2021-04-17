@@ -42,13 +42,30 @@ class HomeScreen extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: Provider.of<ClubTransactionHelper>(context)
-                    .clubTransactions
-                    .map<Widget>(
-                      (ClubTransaction transaction) => RecentClubTransaction(
-                        clubTransaction: transaction,
-                      ),
-                    )
-                    .toList(),
+                        .clubTransactions
+                        .isNotEmpty
+                    ? Provider.of<ClubTransactionHelper>(context)
+                        .clubTransactions
+                        .map<Widget>(
+                          (ClubTransaction transaction) =>
+                              RecentClubTransaction(
+                            clubTransaction: transaction,
+                          ),
+                        )
+                        .toList()
+                    : [
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Text(
+                            'No transactions yet. Press the "Add" button to record transactions!',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.grey,
+                            ),
+                            textAlign: TextAlign.start,
+                          ),
+                        ),
+                      ],
               ),
             ),
           ],

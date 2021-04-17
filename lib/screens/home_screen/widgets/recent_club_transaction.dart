@@ -1,3 +1,4 @@
+import 'package:dbms_project/database_helpers/balances_helper.dart';
 import 'package:dbms_project/global/constants.dart';
 import 'package:dbms_project/database_helpers/club_transaction_helper.dart';
 import 'package:dbms_project/global/enums.dart';
@@ -16,7 +17,7 @@ class RecentClubTransaction extends StatelessWidget {
       leading: getPaymentCategoryIcon(clubTransaction.paymentCategory),
       title: Text('${clubTransaction.payer} to ${clubTransaction.payee}'),
       subtitle: ExpandText(
-        'Date: ${_getDate(clubTransaction)} \nReason: ${clubTransaction.description} \nCategory: ${getCategoryName(clubTransaction)}',
+        'Date: ${_getDate(clubTransaction)} \nReason: ${clubTransaction.description} \nCategory: ${getCategoryName(clubTransaction)} \nPayment Method: ${getPaymentMethodName(clubTransaction)}',
         maxLines: 1,
         expandWidth: true,
       ),
@@ -59,6 +60,10 @@ class RecentClubTransaction extends StatelessWidget {
                       ).deleteTransaction(
                         clubTransaction.id.toString(),
                       );
+                      Provider.of<BalancesHelper>(
+                        context,
+                        listen: false,
+                      ).getBalancesFromTable();
                     },
                   ),
                 ),
