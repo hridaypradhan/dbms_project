@@ -228,7 +228,7 @@ class _AddCollabFormState extends State<AddCollabForm> {
                     : _eventNameController.text,
                 amount: double.parse(_amountController.text),
                 dateTime: _chosenDateTime,
-                description: 'Collaboration with $_chosenClubTwo',
+                description: 'Collaboration between ${_chosenClubOne ?? 'Club 1'} and ${_chosenClubTwo ?? 'Club 2'}',
               );
               Provider.of<BudgetHelper>(
                 context,

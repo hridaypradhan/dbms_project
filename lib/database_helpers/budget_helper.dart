@@ -1,4 +1,5 @@
 import 'package:dbms_project/database_helpers/database_helper.dart';
+import 'package:dbms_project/global/constants.dart';
 import 'package:dbms_project/global/strings.dart';
 import 'package:dbms_project/models/budget_item.dart';
 import 'package:flutter/material.dart';
@@ -9,15 +10,13 @@ class BudgetHelper extends ChangeNotifier {
   }
   DatabaseHelper _databaseHelper = DatabaseHelper();
   List<BudgetItem> _budgetItems = [];
+  double _totalAmount = 0;
+
+  double get totalAmount => _totalAmount;
   List<BudgetItem> get budgetItems => _budgetItems;
 
   void insertBudgetItem(BudgetItem budgetItem) async {
     var db = await _databaseHelper.database;
-    // var result = await db.insert(
-    //   '$budgetTable',
-    //   budgetItem.toMap(),
-    // );
-    print(budgetItem.dateTime.toIso8601String());
     var result = await db.rawInsert(
       '''
       insert into $budgetTable 
@@ -71,6 +70,17 @@ class BudgetHelper extends ChangeNotifier {
           description: 'Add more events!',
         ),
       );
+    result = await db.rawQuery(
+      '''
+         select ifnull (
+           (
+             select sum($budgetAmountColumn) from $budgetTable
+           ), 0
+         ) as $budgetAmountColumn
+      ''',
+    );
+    _totalAmount = convertToDouble(result[0][budgetAmountColumn]);
+
     notifyListeners();
   }
 }

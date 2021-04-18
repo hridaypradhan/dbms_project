@@ -20,6 +20,7 @@ final String clubCollabPocTwoColumn = 'pocTwo';
 final String clubCollabImageUrlColumn = 'imageUrl';
 final String clubCollabResourcesAllocatedColumn = 'resourcesAllocated';
 final String clubCollabIsExpandedColumn = 'isExpanded';
+final String clubCollabTotal = 'totalAmount';
 
 final String budgetTable = 'budgetTable';
 final String budgetEventNameColumn = 'eventName';
@@ -30,7 +31,7 @@ final String budgetDescriptionColumn = 'description';
 final String balancesGpayColumn = 'gpay';
 final String balancesPaytmColumn = 'paytm';
 final String balancesCashColumn = 'cash';
-final String balancesIncomeColumn = 'income'; 
+final String balancesIncomeColumn = 'income';
 final String balancesExpenseColumn = 'expense';
 final String balancesTotalBalanceColumn = 'totalBalance';
 

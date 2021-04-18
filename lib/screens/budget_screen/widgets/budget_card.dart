@@ -43,13 +43,11 @@ class BudgetCard extends StatelessWidget {
                 fontSize: 20.0,
               ),
             ),
-            FittedBox(
-              child: Text(
-                budgetItem.description,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 20.0,
-                ),
+            Text(
+              budgetItem.description,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20.0,
               ),
             ),
             Text(

@@ -23,8 +23,7 @@ class BudgetScreen extends StatelessWidget {
                 padding: EdgeInsets.all(screenSize.width * 0.15),
                 child: FittedBox(
                   child: Text(
-                    // TODO Sum of all budget amounts
-                    'Tentative Budget \n₹5000',
+                    'Tentative Budget \n₹${Provider.of<BudgetHelper>(context).totalAmount}',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 40.0,

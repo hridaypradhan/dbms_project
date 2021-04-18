@@ -13,7 +13,7 @@ class BalancesHelper extends ChangeNotifier {
   BalanceItem _balances = BalanceItem(
     gpay: 0,
     paytm: 0,
-    cash: 0,
+    cash: 0, 
     income: 0,
     expense: 0,
     totalBalance: 0,
