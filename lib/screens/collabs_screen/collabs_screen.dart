@@ -1,7 +1,6 @@
 import 'package:dbms_project/database_helpers/collab_helper.dart';
 import 'package:dbms_project/screens/collabs_screen/widgets/collab_unit.dart';
 import 'package:flutter/material.dart';
-import 'package:dbms_project/global/dummy_data.dart';
 import 'package:provider/provider.dart';
 
 class CollabsScreen extends StatefulWidget {
@@ -25,6 +24,16 @@ class _CollabsScreenState extends State<CollabsScreen> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 40.0,
+                ),
+              ),
+            ),
+            Container(
+              // padding: EdgeInsets.all(screenSize.width * 0.1),
+              child: Text(
+                'Required Amount \n₹5000',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 30.0,
                 ),
               ),
             ),

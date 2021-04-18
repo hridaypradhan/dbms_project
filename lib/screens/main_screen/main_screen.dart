@@ -1,4 +1,3 @@
-import 'package:dbms_project/database_helpers/database_helper.dart';
 import 'package:dbms_project/screens/balances_screen/balances_screen.dart';
 import 'package:dbms_project/screens/budget_screen/budget_screen.dart';
 import 'package:dbms_project/screens/budget_screen/widgets/add_budget_item_form.dart';
@@ -34,12 +33,6 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // TODO remove
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     DatabaseHelper().showClubTransactionTable();
-      //   },
-      // ),
       bottomNavigationBar: FFNavigationBar(
         selectedIndex: _barIndex,
         items: [
