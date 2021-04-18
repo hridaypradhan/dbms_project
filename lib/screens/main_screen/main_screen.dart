@@ -119,7 +119,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   _getForm(int prevPage) {
-    if (_pageController.page == 0)
+    if (_pageController.page == 0 || _pageController.page == 1)
       return AddTransactionForm();
     else if (_pageController.page == 3)
       return AddBudgetItemForm();

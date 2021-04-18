@@ -96,7 +96,7 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
           ),
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ReusableBox(
               child: DropdownButton(
@@ -155,7 +155,7 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
                   );
                 },
                 hint: Text(
-                  'Payment Via',
+                  'Mode',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
@@ -166,8 +166,8 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
               child: DropdownButton(
                 value: _chosenDirection,
                 items: <String>[
-                  'Incoming',
-                  'Outgoing',
+                  'Debit',
+                  'Credit',
                 ].map<DropdownMenuItem<String>>(
                   (String value) {
                     return DropdownMenuItem<String>(

@@ -13,7 +13,7 @@ class BalancesHelper extends ChangeNotifier {
   BalanceItem _balances = BalanceItem(
     gpay: 0,
     paytm: 0,
-    cash: 0, 
+    cash: 0,
     income: 0,
     expense: 0,
     totalBalance: 0,
@@ -45,24 +45,29 @@ class BalancesHelper extends ChangeNotifier {
     _balances.paytm = paytm;
     _balances.cash = cash;
     _balances.totalBalance = gpay + paytm + cash;
-
     result = await db.rawQuery(
       '''
-         select sum ( 
-           case when $clubTransactionsTransactionDirectionColumn = '${ClubTransactionDirection.Incoming}'
-           then $clubTransactionsAmountColumn else 0 end ) 
-         as $balancesIncomeColumn 
-         from $clubTransactionsTable
+         select ifnull (
+           ( 
+             select sum ( 
+               case when $clubTransactionsTransactionDirectionColumn = '${ClubTransactionDirection.Incoming}' 
+               then $clubTransactionsAmountColumn else 0 end 
+           ) 
+           from $clubTransactionsTable 
+        ), 0 ) as $balancesIncomeColumn
       ''',
     );
     _balances.income = convertToDouble(result[0][balancesIncomeColumn]);
     result = await db.rawQuery(
       '''
-         select sum ( 
-           case when $clubTransactionsTransactionDirectionColumn = '${ClubTransactionDirection.Outgoing}'
-           then $clubTransactionsAmountColumn else 0 end ) 
-         as $balancesExpenseColumn 
-         from $clubTransactionsTable
+         select ifnull (
+           ( 
+             select sum ( 
+               case when $clubTransactionsTransactionDirectionColumn = '${ClubTransactionDirection.Outgoing}' 
+               then $clubTransactionsAmountColumn else 0 end 
+           ) 
+           from $clubTransactionsTable 
+        ), 0 ) as $balancesExpenseColumn
       ''',
     );
     _balances.expense = convertToDouble(result[0][balancesExpenseColumn]);

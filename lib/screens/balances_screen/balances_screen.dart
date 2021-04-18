@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 class BalancesScreen extends StatelessWidget {
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     var _balances = Provider.of<BalancesHelper>(context).balances;
     return SafeArea(
@@ -47,10 +47,10 @@ class BalancesScreen extends StatelessWidget {
                     ),
                     child: FittedBox(
                       child: Text(
-                        'Income \n₹${_balances.income}',
+                        'Debit \n₹${_balances.income}',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 30.0,
+                          fontSize: 20.0,
                         ),
                       ),
                     ),
@@ -68,10 +68,10 @@ class BalancesScreen extends StatelessWidget {
                     ),
                     child: FittedBox(
                       child: Text(
-                        'Expense \n₹${_balances.expense}',
+                        'Credit \n₹${_balances.expense}',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 40.0,
+                          fontSize: 20.0,
                         ),
                       ),
                     ),
