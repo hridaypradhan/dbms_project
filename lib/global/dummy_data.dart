@@ -1,3 +1,4 @@
+import 'package:dbms_project/global/strings.dart';
 import 'package:dbms_project/global/enums.dart';
 import 'package:dbms_project/models/balance_item.dart';
 import 'package:dbms_project/models/budget_item.dart';
@@ -58,7 +59,7 @@ ClubCollab dummyCollab = ClubCollab(
   resourcesAllocated: 2000.0,
   pocOne: 'Hriday',
   pocTwo: 'Shraddha',
-  imageUrl: 'https://ecellsnu.com/assets/img/1234.png',
+  imageUrl: tedxImageUrl,
   isExpanded: false,
 );
 ClubCollab dummyCollab2 = ClubCollab(
@@ -69,13 +70,49 @@ ClubCollab dummyCollab2 = ClubCollab(
   resourcesAllocated: 4000.0,
   pocOne: 'Hriday',
   pocTwo: 'Shraddha',
-  imageUrl: 'https://ecellsnu.com/assets/img/1234.png',
+  imageUrl: inspiriaImageUrl,
+  isExpanded: false,
+);
+ClubCollab dummyCollab3 = ClubCollab(
+  clubOne: 'Inspiria',
+  clubTwo: 'E-Cell',
+  eventMonth: 'January',
+  eventName: 'E-Summit',
+  resourcesAllocated: 4000.0,
+  pocOne: 'Hriday',
+  pocTwo: 'Shraddha',
+  imageUrl: ecellImageUrl,
+  isExpanded: false,
+);
+ClubCollab dummyCollab4 = ClubCollab(
+  clubOne: 'Inspiria',
+  clubTwo: 'E-Cell',
+  eventMonth: 'January',
+  eventName: 'E-Summit',
+  resourcesAllocated: 4000.0,
+  pocOne: 'Hriday',
+  pocTwo: 'Shraddha',
+  imageUrl: auraImageUrl,
+  isExpanded: false,
+);
+ClubCollab dummyCollab5 = ClubCollab(
+  clubOne: 'Inspiria',
+  clubTwo: 'E-Cell',
+  eventMonth: 'January',
+  eventName: 'E-Summit',
+  resourcesAllocated: 4000.0,
+  pocOne: 'Hriday',
+  pocTwo: 'Shraddha',
+  imageUrl: feedingIndiaSnuImageUrl,
   isExpanded: false,
 );
 
 List<ClubCollab> dummyCollabList = [
   dummyCollab,
   dummyCollab2,
+  dummyCollab3,
+  dummyCollab4,
+  dummyCollab5,
 ];
 
 BudgetItem dummyBudgetItem = BudgetItem(

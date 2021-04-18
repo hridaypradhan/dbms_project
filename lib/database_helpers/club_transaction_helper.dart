@@ -1,8 +1,7 @@
-import 'package:dbms_project/database_helpers/balances_helper.dart';
 import 'package:dbms_project/global/constants.dart';
 import 'package:dbms_project/database_helpers/database_helper.dart';
-import 'package:dbms_project/global/dummy_data.dart';
 import 'package:dbms_project/global/enums.dart';
+import 'package:dbms_project/global/strings.dart';
 import 'package:dbms_project/models/club_transaction.dart';
 import 'package:flutter/material.dart';
 
@@ -27,15 +26,14 @@ class ClubTransactionHelper extends ChangeNotifier {
     _updateCategoryBalances();
     notifyListeners();
   }
-  //TODO Remove
 
   void _updateCategoryBalances() async {
     var db = await _databaseHelper.database;
     _categoryBalances = [];
     var result = await db.rawQuery(
       '''select $clubTransactionsPaymentCategoryColumn,
-         sum(case when $clubTransactionsTransactionDirectionColumn = "${ClubTransactionDirection.Incoming}" then $clubTransactionsAmountColumn else 0 end) - 
-         sum(case when $clubTransactionsTransactionDirectionColumn = "${ClubTransactionDirection.Outgoing}" then $clubTransactionsAmountColumn else 0 end) 
+         sum(case when $clubTransactionsTransactionDirectionColumn = '${ClubTransactionDirection.Incoming}' then $clubTransactionsAmountColumn else 0 end) - 
+         sum(case when $clubTransactionsTransactionDirectionColumn = '${ClubTransactionDirection.Outgoing}' then $clubTransactionsAmountColumn else 0 end) 
          as $clubTransactionsAmountColumn 
          from $clubTransactionsTable 
          group by $clubTransactionsPaymentCategoryColumn''',
@@ -57,15 +55,15 @@ class ClubTransactionHelper extends ChangeNotifier {
           );
         },
       );
-    if (!_categoryBalances
-        .any((element) => element.paymentCategory == PaymentCategory.Food))
-      _categoryBalances.add(defaultBalanceList[0]);
-    if (!_categoryBalances
-        .any((element) => element.paymentCategory == PaymentCategory.Transport))
-      _categoryBalances.add(defaultBalanceList[1]);
-    if (!_categoryBalances
-        .any((element) => element.paymentCategory == PaymentCategory.Misc))
-      _categoryBalances.add(defaultBalanceList[2]);
+    if (!_categoryBalances.any(
+      (element) => element.paymentCategory == PaymentCategory.Food,
+    )) _categoryBalances.add(defaultBalanceList[0]);
+    if (!_categoryBalances.any(
+      (element) => element.paymentCategory == PaymentCategory.Transport,
+    )) _categoryBalances.add(defaultBalanceList[1]);
+    if (!_categoryBalances.any(
+      (element) => element.paymentCategory == PaymentCategory.Misc,
+    )) _categoryBalances.add(defaultBalanceList[2]);
   }
 
   List<ClubTransaction> get clubTransactions => _clubTransactions;
@@ -73,9 +71,29 @@ class ClubTransactionHelper extends ChangeNotifier {
 
   void insertTransaction(ClubTransaction transaction) async {
     var db = await _databaseHelper.database;
-    var result = await db.insert(
-      '$clubTransactionsTable',
-      transaction.toMap(),
+    var result = await db.rawInsert(
+      '''insert into $clubTransactionsTable 
+         (
+           $clubTransactionsDescriptionColumn, 
+           $clubTransactionsPayerColumn, 
+           $clubTransactionsPayeeColumn, 
+           $clubTransactionsPaymentMethodColumn, 
+           $clubTransactionsAmountColumn, 
+           $clubTransactionsDateTimeColumn, 
+           $clubTransactionsPaymentCategoryColumn, 
+           $clubTransactionsTransactionDirectionColumn
+         ) 
+         values 
+         (
+           '{transaction.description}', 
+           '${transaction.payer}', 
+           '${transaction.payee}', 
+           '${transaction.paymentMethod}', 
+           ${transaction.amount}, 
+           '${transaction.dateTime.toIso8601String()}', 
+           '${transaction.paymentCategory}', 
+           '${transaction.transactionDirection}'
+         )''',
     );
     getTransactionsFromTable();
     print('Club Transaction insertion result : $result');

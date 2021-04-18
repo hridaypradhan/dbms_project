@@ -1,4 +1,4 @@
-import 'package:dbms_project/global/constants.dart';
+import 'package:dbms_project/global/strings.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
@@ -52,6 +52,21 @@ class DatabaseHelper {
         ''').then(
           (value) => print('Budget Table created!'),
         );
+        await db.execute('''
+              create table $clubCollabTable (
+                $clubCollabClubOneColumn text,
+                $clubCollabClubTwoColumn text,
+                $clubCollabEventNameColumn text,
+                $clubCollabEventMonthColumn text,
+                $clubCollabPocOneColumn text,
+                $clubCollabPocTwoColumn text,
+                $clubCollabImageUrlColumn text,
+                $clubCollabResourcesAllocatedColumn decimal,
+                $clubCollabIsExpandedColumn int
+              )
+        ''').then(
+          (value) => print('Collabs Table created!'),
+        );
       },
     );
     return database;
@@ -72,6 +87,4 @@ class DatabaseHelper {
         await db.rawQuery('select * from $budgetTable order by dateTime desc');
     print(list);
   }
-
- 
 }

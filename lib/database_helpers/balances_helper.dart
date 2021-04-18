@@ -1,6 +1,7 @@
 import 'package:dbms_project/database_helpers/database_helper.dart';
 import 'package:dbms_project/global/constants.dart';
 import 'package:dbms_project/global/enums.dart';
+import 'package:dbms_project/global/strings.dart';
 import 'package:dbms_project/models/balance_item.dart';
 import 'package:flutter/material.dart';
 
@@ -23,8 +24,8 @@ class BalancesHelper extends ChangeNotifier {
     var db = await _databaseHelper.database;
     var result = await db.rawQuery(
       '''select $clubTransactionsPaymentMethodColumn, 
-         sum(case when $clubTransactionsTransactionDirectionColumn = "${ClubTransactionDirection.Incoming}" then $clubTransactionsAmountColumn else 0 end) - 
-         sum(case when $clubTransactionsTransactionDirectionColumn = "${ClubTransactionDirection.Outgoing}" then $clubTransactionsAmountColumn else 0 end) 
+         sum(case when $clubTransactionsTransactionDirectionColumn = '${ClubTransactionDirection.Incoming}' then $clubTransactionsAmountColumn else 0 end) - 
+         sum(case when $clubTransactionsTransactionDirectionColumn = '${ClubTransactionDirection.Outgoing}' then $clubTransactionsAmountColumn else 0 end) 
          as $clubTransactionsAmountColumn 
          from $clubTransactionsTable 
          group by $clubTransactionsPaymentMethodColumn''',
@@ -32,7 +33,6 @@ class BalancesHelper extends ChangeNotifier {
     double gpay = 0, paytm = 0, cash = 0;
     result.forEach(
       (element) {
-        print('Jere');
         if (element.containsValue(PaymentMethod.GPay.toString()))
           gpay = convertToDouble(element[clubTransactionsAmountColumn]);
         else if (element.containsValue(PaymentMethod.Paytm.toString()))

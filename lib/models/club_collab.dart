@@ -34,7 +34,8 @@ class ClubCollab {
         pocTwo: json["pocTwo"],
         imageUrl: json["imageUrl"],
         resourcesAllocated: json["resourcesAllocated"].toDouble(),
-        isExpanded: json["isExpanded"] == 1,
+        // isExpanded: json["isExpanded"] == 1,
+        isExpanded: false,
       );
 
   Map<String, dynamic> toMap() => {

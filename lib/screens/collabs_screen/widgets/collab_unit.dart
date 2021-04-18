@@ -1,5 +1,8 @@
+import 'package:dbms_project/database_helpers/budget_helper.dart';
+import 'package:dbms_project/database_helpers/collab_helper.dart';
 import 'package:dbms_project/models/club_collab.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 ExpansionPanel getPanelFromCollab(ClubCollab collab, BuildContext context) {
   return ExpansionPanel(
@@ -15,6 +18,35 @@ ExpansionPanel getPanelFromCollab(ClubCollab collab, BuildContext context) {
         style: TextStyle(
           fontSize: 25.0,
         ),
+      ),
+      trailing: IconButton(
+        icon: Icon(
+          Icons.delete_rounded,
+        ),
+        onPressed: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Are you sure?'),
+              action: SnackBarAction(
+                label: 'Delete',
+                onPressed: () {
+                  Provider.of<CollabHelper>(
+                    context,
+                    listen: false,
+                  ).deleteCollab(
+                    collab.eventName,
+                  );
+                  Provider.of<BudgetHelper>(
+                    context,
+                    listen: false,
+                  ).deleteBudgetItem(
+                    collab.eventName,
+                  );
+                },
+              ),
+            ),
+          );
+        },
       ),
     ),
     body: Container(

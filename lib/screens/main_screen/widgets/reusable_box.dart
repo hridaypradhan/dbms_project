@@ -9,10 +9,10 @@ class ReusableBox extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(5.0),
         border: Border.all(
             width: 1,
-            color: Colors.white //                   <--- border width here
+            color: Colors.white                
             ),
       ),
       child: child,

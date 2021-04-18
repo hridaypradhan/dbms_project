@@ -66,7 +66,8 @@ class BudgetScreen extends StatelessWidget {
                               'No budget items yet. \n\nClick "Add" to enter new ones!',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                fontSize: 30.0,
+                                fontSize: 20.0,
+                                color: Colors.grey,
                               ),
                             ),
                           ),

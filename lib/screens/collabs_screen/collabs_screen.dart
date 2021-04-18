@@ -1,11 +1,10 @@
-import 'package:dbms_project/models/club_collab.dart';
+import 'package:dbms_project/database_helpers/collab_helper.dart';
 import 'package:dbms_project/screens/collabs_screen/widgets/collab_unit.dart';
 import 'package:flutter/material.dart';
 import 'package:dbms_project/global/dummy_data.dart';
+import 'package:provider/provider.dart';
 
 class CollabsScreen extends StatefulWidget {
-  static final id = 'collabs_screen';
-
   @override
   _CollabsScreenState createState() => _CollabsScreenState();
 }
@@ -31,20 +30,38 @@ class _CollabsScreenState extends State<CollabsScreen> {
             ),
             Expanded(
               child: SingleChildScrollView(
-                child: ExpansionPanelList(
-                  expansionCallback: (index, isExpanded) {
-                    setState(
-                      () {
-                        dummyCollabList[index].toggleExpansion();
-                      },
-                    );
-                  },
-                  children: dummyCollabList
-                      .map(
-                        (collab) => getPanelFromCollab(collab, context),
+                child: Provider.of<CollabHelper>(context).clubCollabs.isNotEmpty
+                    ? ExpansionPanelList(
+                        expansionCallback: (index, isExpanded) {
+                          setState(
+                            () {
+                              Provider.of<CollabHelper>(
+                                context,
+                                listen: false,
+                              ).clubCollabs[index].toggleExpansion();
+                            },
+                          );
+                        },
+                        children: Provider.of<CollabHelper>(context)
+                            .clubCollabs
+                            .map(
+                              (collab) => getPanelFromCollab(collab, context),
+                            )
+                            .toList(),
                       )
-                      .toList(),
-                ),
+                    : Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'No collabs yet. \nPress the \'Add\' button to enter a new one!',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 20.0,
+                            ),
+                          ),
+                        ),
+                      ),
               ),
             ),
           ],
@@ -53,6 +70,3 @@ class _CollabsScreenState extends State<CollabsScreen> {
     );
   }
 }
-
-// 'https://ecellsnu.com/assets/img/1234.png',
-          

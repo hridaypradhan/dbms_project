@@ -1,39 +1,43 @@
 import 'package:dbms_project/database_helpers/balances_helper.dart';
+import 'package:dbms_project/database_helpers/budget_helper.dart';
+import 'package:dbms_project/database_helpers/collab_helper.dart';
 import 'package:dbms_project/global/constants.dart';
 import 'package:dbms_project/database_helpers/club_transaction_helper.dart';
-import 'package:dbms_project/global/enums.dart';
+import 'package:dbms_project/global/strings.dart';
+import 'package:dbms_project/models/budget_item.dart';
+import 'package:dbms_project/models/club_collab.dart';
 import 'package:dbms_project/models/club_transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:dbms_project/screens/main_screen/widgets/reusable_box.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 
-class AddTransactionForm extends StatefulWidget {
+class AddCollabForm extends StatefulWidget {
   @override
-  _AddTransactionFormState createState() => _AddTransactionFormState();
+  _AddCollabFormState createState() => _AddCollabFormState();
 }
 
-class _AddTransactionFormState extends State<AddTransactionForm> {
-  String _chosenCategory, _chosenPaymentMethod, _chosenDirection;
+class _AddCollabFormState extends State<AddCollabForm> {
+  String _chosenClubOne, _chosenClubTwo;
   DateTime _chosenDateTime;
-  TextEditingController _payerController,
-      _payeeController,
-      _descController,
+  TextEditingController _eventNameController,
+      _pocOneController,
+      _pocTwoController,
       _amountController;
   @override
   void initState() {
     super.initState();
-    _payerController = TextEditingController();
-    _payeeController = TextEditingController();
-    _descController = TextEditingController();
+    _eventNameController = TextEditingController();
+    _pocOneController = TextEditingController();
+    _pocTwoController = TextEditingController();
     _amountController = TextEditingController();
   }
 
   @override
   void dispose() {
-    _payerController.dispose();
-    _payeeController.dispose();
-    _descController.dispose();
+    _eventNameController.dispose();
+    _pocOneController.dispose();
+    _pocTwoController.dispose();
     _amountController.dispose();
     super.dispose();
   }
@@ -44,14 +48,14 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text(
-          'Add Transaction',
+          'Add Collaboration',
           style: TextStyle(fontSize: 25.0),
         ),
         TextField(
           textAlign: TextAlign.center,
           keyboardType: TextInputType.name,
           textCapitalization: TextCapitalization.words,
-          controller: _payerController,
+          controller: _eventNameController,
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.white),
@@ -60,14 +64,14 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
               borderSide: BorderSide(color: Colors.white),
             ),
             hintStyle: TextStyle(color: Colors.grey),
-            hintText: 'Enter Payer\'s Name',
+            hintText: 'Enter Event\'s Name',
           ),
         ),
         TextField(
           textAlign: TextAlign.center,
           keyboardType: TextInputType.name,
           textCapitalization: TextCapitalization.words,
-          controller: _payeeController,
+          controller: _pocOneController,
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.white),
@@ -76,12 +80,12 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
               borderSide: BorderSide(color: Colors.white),
             ),
             hintStyle: TextStyle(color: Colors.grey),
-            hintText: 'Enter Payee\'s Name',
+            hintText: 'POC for the first club',
           ),
         ),
         TextField(
           textAlign: TextAlign.center,
-          controller: _descController,
+          controller: _pocTwoController,
           keyboardType: TextInputType.text,
           textCapitalization: TextCapitalization.sentences,
           decoration: InputDecoration(
@@ -92,19 +96,21 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
               borderSide: BorderSide(color: Colors.white),
             ),
             hintStyle: TextStyle(color: Colors.grey),
-            hintText: 'Enter Description',
+            hintText: 'POC for the second club',
           ),
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ReusableBox(
               child: DropdownButton(
-                value: _chosenCategory,
+                value: _chosenClubOne,
                 items: <String>[
-                  'Transport',
-                  'Food',
-                  'Misc',
+                  'TEDx',
+                  'E-Cell',
+                  'Inspiria',
+                  'Aura',
+                  'Feeding India SNU',
                 ].map<DropdownMenuItem<String>>(
                   (String value) {
                     return DropdownMenuItem<String>(
@@ -118,12 +124,12 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
                 onChanged: (value) {
                   setState(
                     () {
-                      _chosenCategory = value;
+                      _chosenClubOne = value;
                     },
                   );
                 },
                 hint: Text(
-                  'Category',
+                  'Your Club',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
@@ -132,11 +138,13 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
             ),
             ReusableBox(
               child: DropdownButton(
-                value: _chosenPaymentMethod,
+                value: _chosenClubTwo,
                 items: <String>[
-                  'GPay',
-                  'Paytm',
-                  'Cash',
+                  'TEDx',
+                  'E-Cell',
+                  'Inspiria',
+                  'Aura',
+                  'Feeding India SNU',
                 ].map<DropdownMenuItem<String>>(
                   (String value) {
                     return DropdownMenuItem<String>(
@@ -150,43 +158,12 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
                 onChanged: (value) {
                   setState(
                     () {
-                      _chosenPaymentMethod = value;
+                      _chosenClubTwo = value;
                     },
                   );
                 },
                 hint: Text(
-                  'Payment Via',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            ReusableBox(
-              child: DropdownButton(
-                value: _chosenDirection,
-                items: <String>[
-                  'Incoming',
-                  'Outgoing',
-                ].map<DropdownMenuItem<String>>(
-                  (String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                      ),
-                    );
-                  },
-                ).toList(),
-                onChanged: (value) {
-                  setState(
-                    () {
-                      _chosenDirection = value;
-                    },
-                  );
-                },
-                hint: Text(
-                  'Direction',
+                  'Other Club',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
@@ -212,12 +189,11 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
         ),
         ReusableBox(
           child: DateTimePicker(
+            type: DateTimePickerType.date,
             textAlign: TextAlign.center,
-            type: DateTimePickerType.dateTimeSeparate,
-            firstDate: DateTime(2021),
-            lastDate: DateTime.now(),
-            dateHintText: 'Transaction Date',
-            timeHintText: 'Time',
+            firstDate: DateTime.now(),
+            lastDate: DateTime(DateTime.now().year + 1),
+            dateHintText: 'Tentative Event Date',
             onChanged: (value) {
               _chosenDateTime = DateTime.parse(value);
             },
@@ -229,33 +205,37 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
           ),
           onPressed: () async {
             try {
-              var newTransaction = ClubTransaction(
-                payer: _payerController.text.length == 0
+              var newCollab = ClubCollab(
+                eventName: _eventNameController.text.length == 0
+                    ? 'Unnamed'
+                    : _eventNameController.text,
+                pocOne: _pocOneController.text.length == 0
                     ? 'XYZ'
-                    : _payerController.text,
-                payee: _payeeController.text.length == 0
-                    ? 'XYZ'
-                    : _payeeController.text,
-                description: _descController.text.length != 0
-                    ? _descController.text
-                    : 'Unspecified',
-                amount: double.parse(_amountController.text),
-                dateTime: _chosenDateTime ?? DateTime.now(),
-                paymentMethod: getPaymentMethod(_chosenPaymentMethod) ??
-                    PaymentMethod.Cash,
-                paymentCategory: getPaymentCategory(_chosenCategory) ??
-                    PaymentCategory.Transport,
-                transactionDirection: getDirection(_chosenDirection) ??
-                    ClubTransactionDirection.Incoming,
+                    : _pocOneController.text,
+                pocTwo: _pocTwoController.text.length != 0
+                    ? _pocTwoController.text
+                    : 'XYZ',
+                resourcesAllocated: double.parse(_amountController.text),
+                eventMonth: _getMonthName(_chosenDateTime),
+                clubTwo: _chosenClubTwo ?? 'Club 2',
+                clubOne: _chosenClubOne ?? 'Club 1',
+                imageUrl: _getImageUrl(_chosenClubTwo),
+                isExpanded: false,
               );
-              Provider.of<ClubTransactionHelper>(
+              Provider.of<CollabHelper>(
                 context,
                 listen: false,
-              ).insertTransaction(newTransaction);
-              Provider.of<BalancesHelper>(
+              ).insertCollab(newCollab);
+              var newBudgetItem = BudgetItem(
+                eventName: _eventNameController.text,
+                amount: double.parse(_amountController.text),
+                dateTime: _chosenDateTime,
+                description: 'Collaboration with $_chosenClubTwo',
+              );
+              Provider.of<BudgetHelper>(
                 context,
                 listen: false,
-              ).getBalancesFromTable();
+              ).insertBudgetItem(newBudgetItem);
               _clearFields();
               Navigator.pop(context);
             } catch (e) {
@@ -276,12 +256,59 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
 
   _clearFields() {
     _amountController.clear();
-    _chosenCategory = null;
+    _chosenClubOne = null;
     _chosenDateTime = null;
-    _chosenDirection = null;
-    _chosenPaymentMethod = null;
-    _descController.clear();
-    _payeeController.clear();
-    _payerController.clear();
+    _chosenClubTwo = null;
+    _pocTwoController.clear();
+    _pocOneController.clear();
+    _eventNameController.clear();
+  }
+
+  String _getImageUrl(String clubTwo) {
+    switch (clubTwo) {
+      case 'TEDx':
+        return tedxImageUrl;
+      case 'Aura':
+        return auraImageUrl;
+      case 'Inspiria':
+        return inspiriaImageUrl;
+      case 'E-Cell':
+        return ecellImageUrl;
+      case 'Feeding India SNU':
+        return feedingIndiaSnuImageUrl;
+      default:
+        return unnamedClubImageUrl;
+    }
+  }
+
+  String _getMonthName(DateTime dateTime) {
+    switch (dateTime.month) {
+      case 1:
+        return 'January';
+      case 2:
+        return 'February';
+      case 3:
+        return 'March';
+      case 4:
+        return 'April';
+      case 5:
+        return 'May';
+      case 6:
+        return 'June';
+      case 7:
+        return 'July';
+      case 8:
+        return 'August';
+      case 9:
+        return 'September';
+      case 10:
+        return 'October';
+      case 11:
+        return 'November';
+      case 12:
+        return 'December';
+      default:
+        return 'Unspecified';
+    }
   }
 }

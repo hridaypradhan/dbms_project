@@ -3,6 +3,7 @@ import 'package:dbms_project/screens/balances_screen/balances_screen.dart';
 import 'package:dbms_project/screens/budget_screen/budget_screen.dart';
 import 'package:dbms_project/screens/budget_screen/widgets/add_budget_item_form.dart';
 import 'package:dbms_project/screens/collabs_screen/collabs_screen.dart';
+import 'package:dbms_project/screens/collabs_screen/widgets/add_collab_form.dart';
 import 'package:dbms_project/screens/home_screen/home_screen.dart';
 import 'package:dbms_project/screens/home_screen/widgets/add_transaction_form.dart';
 import 'package:ff_navigation_bar/ff_navigation_bar.dart';
@@ -127,6 +128,8 @@ class _MainScreenState extends State<MainScreen> {
   _getForm(int prevPage) {
     if (_pageController.page == 0)
       return AddTransactionForm();
-    else if (_pageController.page == 3) return AddBudgetItemForm();
+    else if (_pageController.page == 3)
+      return AddBudgetItemForm();
+    else if (_pageController.page == 2) return AddCollabForm();
   }
 }

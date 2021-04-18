@@ -1,5 +1,6 @@
 import 'package:dbms_project/database_helpers/budget_helper.dart';
 import 'package:dbms_project/models/budget_item.dart';
+import 'package:dbms_project/screens/main_screen/widgets/reusable_box.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:date_time_picker/date_time_picker.dart';
@@ -86,15 +87,18 @@ class _AddBudgetItemFormState extends State<AddBudgetItemForm> {
             hintText: 'Enter Amount',
           ),
         ),
-        DateTimePicker(
-          type: DateTimePickerType.dateTimeSeparate,
-          firstDate: DateTime.now(),
-          lastDate: DateTime(DateTime.now().year + 2),
-          dateHintText: 'Tentative Event Date',
-          timeHintText: 'Time',
-          onChanged: (value) {
-            _chosenDateTime = DateTime.parse(value);
-          },
+        ReusableBox(
+          child: DateTimePicker(
+            textAlign: TextAlign.center,
+            type: DateTimePickerType.dateTimeSeparate,
+            firstDate: DateTime.now(),
+            lastDate: DateTime(DateTime.now().year + 2),
+            dateHintText: 'Tentative Event Date',
+            timeHintText: 'Time',
+            onChanged: (value) {
+              _chosenDateTime = DateTime.parse(value);
+            },
+          ),
         ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
