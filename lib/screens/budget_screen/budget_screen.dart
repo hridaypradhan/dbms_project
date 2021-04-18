@@ -1,4 +1,5 @@
 import 'package:dbms_project/database_helpers/budget_helper.dart';
+import 'package:dbms_project/database_helpers/collab_helper.dart';
 import 'package:dbms_project/models/budget_item.dart';
 import 'package:dbms_project/screens/budget_screen/widgets/budget_card.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,15 @@ class BudgetScreen extends StatelessWidget {
                           Provider.of<BudgetHelper>(
                             context,
                             listen: false,
-                          ).deleteBudgetItem(_budgetItems[item % _budgetItems.length].eventName);
+                          ).deleteBudgetItem(
+                            _budgetItems[item % _budgetItems.length].eventName,
+                          );
+                          Provider.of<CollabHelper>(
+                            context,
+                            listen: false,
+                          ).deleteCollab(
+                            _budgetItems[item % _budgetItems.length].eventName,
+                          );
                         },
                         itemBuilder: (BuildContext context, int index) =>
                             BudgetCard(

@@ -1,9 +1,7 @@
-import 'package:dbms_project/database_helpers/budget_helper.dart';
 import 'package:dbms_project/database_helpers/database_helper.dart';
 import 'package:dbms_project/global/strings.dart';
 import 'package:dbms_project/models/club_collab.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class CollabHelper extends ChangeNotifier {
   CollabHelper() {
@@ -28,10 +26,11 @@ class CollabHelper extends ChangeNotifier {
 
   void deleteCollab(String eventName) async {
     var db = await _databaseHelper.database;
-    var result = await db.delete(
-      '$clubCollabTable',
-      where: '$clubCollabEventNameColumn = ?',
-      whereArgs: [eventName],
+    var result = await db.rawDelete(
+      '''
+         delete from $clubCollabTable 
+         where $clubCollabEventNameColumn = '$eventName'
+      ''',
     );
     getClubCollabsFromTable();
     print('Deletion result : $result');

@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
     );
 
     return MultiProvider(
-      providers: [
+      providers: [ 
         ChangeNotifierProvider<ClubTransactionHelper>(
           create: (context) => ClubTransactionHelper(),
         ),

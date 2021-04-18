@@ -77,7 +77,7 @@ class _AddBudgetItemFormState extends State<AddBudgetItemForm> {
           keyboardType: TextInputType.number,
           controller: _amountController,
           decoration: InputDecoration(
-            border: OutlineInputBorder(
+            border: OutlineInputBorder( 
               borderSide: BorderSide(color: Colors.white),
             ),
             enabledBorder: OutlineInputBorder(

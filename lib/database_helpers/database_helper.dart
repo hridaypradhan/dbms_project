@@ -27,6 +27,7 @@ class DatabaseHelper {
       path,
       version: 1,
       onCreate: (db, version) async {
+        // Create Club Transactions Table
         await db.execute('''
               create table $clubTransactionsTable (
                 $clubTransactionsIdColumn integer primary key autoincrement,
@@ -42,6 +43,7 @@ class DatabaseHelper {
         ''').then(
           (value) => print('Club Transactions Table created!'),
         );
+        // Create Budget Table
         await db.execute('''
               create table $budgetTable (
                 $budgetEventNameColumn text,
@@ -52,6 +54,7 @@ class DatabaseHelper {
         ''').then(
           (value) => print('Budget Table created!'),
         );
+        // Create Club Collab Table
         await db.execute('''
               create table $clubCollabTable (
                 $clubCollabClubOneColumn text,
@@ -70,21 +73,5 @@ class DatabaseHelper {
       },
     );
     return database;
-  }
-
-// TODO Remove
-  void showClubTransactionTable() async {
-    var db = await database;
-    List list = await db
-        .rawQuery('select * from $clubTransactionsTable order by id desc');
-    print(list);
-  }
-
-  // TODO remove
-  void showBudgetTable() async {
-    var db = await database;
-    List list =
-        await db.rawQuery('select * from $budgetTable order by dateTime desc');
-    print(list);
   }
 }

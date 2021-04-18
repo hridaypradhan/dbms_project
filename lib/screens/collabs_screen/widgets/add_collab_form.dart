@@ -227,7 +227,9 @@ class _AddCollabFormState extends State<AddCollabForm> {
                 listen: false,
               ).insertCollab(newCollab);
               var newBudgetItem = BudgetItem(
-                eventName: _eventNameController.text,
+                eventName: _eventNameController.text.length == 0
+                    ? 'Unnamed'
+                    : _eventNameController.text,
                 amount: double.parse(_amountController.text),
                 dateTime: _chosenDateTime,
                 description: 'Collaboration with $_chosenClubTwo',
