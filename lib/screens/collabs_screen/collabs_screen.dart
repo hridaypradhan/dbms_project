@@ -13,7 +13,7 @@ class _CollabsScreenState extends State<CollabsScreen> {
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     return SafeArea(
-      child: Scaffold(
+      child: Scaffold( 
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -32,7 +32,7 @@ class _CollabsScreenState extends State<CollabsScreen> {
                 bottom: screenSize.width * 0.1,
               ),
               child: Text(
-                'Required Amount \n₹5000',
+                'Required Amount \n₹${Provider.of<CollabHelper>(context).totalAmount}',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30.0,

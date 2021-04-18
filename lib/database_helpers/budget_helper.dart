@@ -42,10 +42,11 @@ class BudgetHelper extends ChangeNotifier {
 
   void deleteBudgetItem(String eventName) async {
     var db = await _databaseHelper.database;
-    var result = await db.delete(
-      '$budgetTable',
-      where: '$budgetEventNameColumn = ?',
-      whereArgs: [eventName],
+    var result = await db.rawDelete(
+      '''
+      delete from $budgetTable 
+      where $budgetEventNameColumn = '$eventName'
+      ''',
     );
     getBudgetItemsFromTable();
     print('Deletion result : $result');

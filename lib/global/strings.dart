@@ -30,7 +30,7 @@ final String budgetDescriptionColumn = 'description';
 final String balancesGpayColumn = 'gpay';
 final String balancesPaytmColumn = 'paytm';
 final String balancesCashColumn = 'cash';
-final String balancesIncomeColumn = 'incoming';
+final String balancesIncomeColumn = 'income'; 
 final String balancesExpenseColumn = 'expense';
 final String balancesTotalBalanceColumn = 'totalBalance';
 

@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 class BalancesScreen extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     var screenSize = MediaQuery.of(context).size;
     var _balances = Provider.of<BalancesHelper>(context).balances;
     return SafeArea(

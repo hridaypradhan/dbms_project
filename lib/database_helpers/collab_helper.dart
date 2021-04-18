@@ -11,6 +11,10 @@ class CollabHelper extends ChangeNotifier {
 
   List<ClubCollab> _clubCollabs = [];
 
+  double _totalAmount = 0;
+
+  double get totalAmount => _totalAmount;
+
   List<ClubCollab> get clubCollabs => _clubCollabs;
 
   void insertCollab(ClubCollab collab) async {
@@ -51,7 +55,7 @@ class CollabHelper extends ChangeNotifier {
   void deleteCollab(String eventName) async {
     var db = await _databaseHelper.database;
     var result = await db.rawDelete(
-      '''
+      ''' 
          delete from $clubCollabTable 
          where $clubCollabEventNameColumn = '$eventName'
       ''',
