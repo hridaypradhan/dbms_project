@@ -18,7 +18,7 @@ class _CollabsScreenState extends State<CollabsScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              padding: EdgeInsets.all(screenSize.width * 0.2),
+              padding: EdgeInsets.all(screenSize.width * 0.15),
               child: Text(
                 'Upcoming Club Collabs',
                 textAlign: TextAlign.center,
@@ -28,7 +28,9 @@ class _CollabsScreenState extends State<CollabsScreen> {
               ),
             ),
             Container(
-              // padding: EdgeInsets.all(screenSize.width * 0.1),
+              padding: EdgeInsets.only(
+                bottom: screenSize.width * 0.1,
+              ),
               child: Text(
                 'Required Amount \n₹5000',
                 textAlign: TextAlign.center,

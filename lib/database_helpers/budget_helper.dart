@@ -17,6 +17,7 @@ class BudgetHelper extends ChangeNotifier {
     //   '$budgetTable',
     //   budgetItem.toMap(),
     // );
+    print(budgetItem.dateTime.toIso8601String());
     var result = await db.rawInsert(
       '''
       insert into $budgetTable 
@@ -30,8 +31,8 @@ class BudgetHelper extends ChangeNotifier {
       (
         '${budgetItem.eventName}', 
         ${budgetItem.amount}, 
-        ${budgetItem.dateTime.toIso8601String()}, 
-        ${budgetItem.description}
+        '${budgetItem.dateTime.toIso8601String()}', 
+        '${budgetItem.description}'
       )
       ''',
     );
