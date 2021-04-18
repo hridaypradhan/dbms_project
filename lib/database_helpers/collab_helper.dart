@@ -15,9 +15,33 @@ class CollabHelper extends ChangeNotifier {
 
   void insertCollab(ClubCollab collab) async {
     var db = await _databaseHelper.database;
-    var result = await db.insert(
-      '$clubCollabTable',
-      collab.toMap(),
+    var result = await db.rawInsert(
+      '''
+          insert into $clubCollabTable
+          (
+            $clubCollabClubOneColumn, 
+            $clubCollabClubTwoColumn, 
+            $clubCollabEventNameColumn, 
+            $clubCollabEventMonthColumn, 
+            $clubCollabPocOneColumn, 
+            $clubCollabPocTwoColumn, 
+            $clubCollabImageUrlColumn, 
+            $clubCollabResourcesAllocatedColumn,
+            $clubCollabIsExpandedColumn
+          ) 
+          values
+          (
+            '${collab.clubOne}', 
+            '${collab.clubTwo}', 
+            '${collab.eventName}', 
+            '${collab.eventMonth}', 
+            '${collab.pocOne}', 
+            '${collab.pocTwo}', 
+            '${collab.imageUrl}', 
+            '${collab.resourcesAllocated}',
+            0
+          )
+      ''',
     );
 
     getClubCollabsFromTable();

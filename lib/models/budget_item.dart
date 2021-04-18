@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BudgetItem {
+class BudgetItem { 
   BudgetItem({
     @required this.eventName,
     @required this.amount,

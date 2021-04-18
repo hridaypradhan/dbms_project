@@ -13,11 +13,28 @@ class BudgetHelper extends ChangeNotifier {
 
   void insertBudgetItem(BudgetItem budgetItem) async {
     var db = await _databaseHelper.database;
-    var result = await db.insert(
-      '$budgetTable',
-      budgetItem.toMap(), 
+    // var result = await db.insert(
+    //   '$budgetTable',
+    //   budgetItem.toMap(),
+    // );
+    var result = await db.rawInsert(
+      '''
+      insert into $budgetTable 
+      (
+        $budgetEventNameColumn, 
+        $budgetAmountColumn, 
+        $budgetDateTimeColumn, 
+        $budgetDescriptionColumn
+      ) 
+      values 
+      (
+        '${budgetItem.eventName}', 
+        ${budgetItem.amount}, 
+        ${budgetItem.dateTime.toIso8601String()}, 
+        ${budgetItem.description}
+      )
+      ''',
     );
-
     getBudgetItemsFromTable();
     print('Budget insertion result : $result');
   }

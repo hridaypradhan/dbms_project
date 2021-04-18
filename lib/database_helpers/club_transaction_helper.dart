@@ -85,7 +85,7 @@ class ClubTransactionHelper extends ChangeNotifier {
          ) 
          values 
          (
-           '{transaction.description}', 
+           '${transaction.description}', 
            '${transaction.payer}', 
            '${transaction.payee}', 
            '${transaction.paymentMethod}', 
@@ -101,10 +101,11 @@ class ClubTransactionHelper extends ChangeNotifier {
 
   void deleteTransaction(String id) async {
     var db = await _databaseHelper.database;
-    var result = await db.delete(
-      '$clubTransactionsTable',
-      where: '$clubTransactionsIdColumn = ?',
-      whereArgs: [id],
+    var result = await db.rawDelete(
+      '''
+         delete from $clubTransactionsTable 
+         where $clubTransactionsIdColumn = '$id'
+      ''',
     );
     getTransactionsFromTable();
     print('Deletion result : $result');
