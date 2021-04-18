@@ -31,21 +31,21 @@ class BalancesScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: screenSize.width * 0.3,
-                    margin: EdgeInsets.symmetric(
-                      horizontal: screenSize.width * 0.09,
-                      vertical: screenSize.width * 0.02,
-                    ),
-                    padding: EdgeInsets.all(screenSize.width * 0.04),
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    child: FittedBox(
+              FittedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: screenSize.width * 0.3,
+                      margin: EdgeInsets.symmetric(
+                        horizontal: screenSize.width * 0.09,
+                        vertical: screenSize.width * 0.02,
+                      ),
+                      padding: EdgeInsets.all(screenSize.width * 0.04),
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
                       child: Text(
                         'Debit \n₹${_balances.income}',
                         textAlign: TextAlign.center,
@@ -54,19 +54,17 @@ class BalancesScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ),
-                  Container(
-                    width: screenSize.width * 0.3,
-                    margin: EdgeInsets.symmetric(
-                      horizontal: screenSize.width * 0.09,
-                      vertical: screenSize.width * 0.02,
-                    ),
-                    padding: EdgeInsets.all(screenSize.width * 0.04),
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    child: FittedBox(
+                    Container(
+                      width: screenSize.width * 0.3,
+                      margin: EdgeInsets.symmetric(
+                        horizontal: screenSize.width * 0.09,
+                        vertical: screenSize.width * 0.02,
+                      ),
+                      padding: EdgeInsets.all(screenSize.width * 0.04),
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
                       child: Text(
                         'Credit \n₹${_balances.expense}',
                         textAlign: TextAlign.center,
@@ -75,8 +73,8 @@ class BalancesScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               Expanded(
                 child: SingleChildScrollView(

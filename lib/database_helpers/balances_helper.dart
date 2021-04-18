@@ -3,6 +3,7 @@ import 'package:dbms_project/global/constants.dart';
 import 'package:dbms_project/global/enums.dart';
 import 'package:dbms_project/global/strings.dart';
 import 'package:dbms_project/models/balance_item.dart';
+import 'package:dbms_project/models/initial_data.dart';
 import 'package:flutter/material.dart';
 
 class BalancesHelper extends ChangeNotifier {
@@ -20,9 +21,24 @@ class BalancesHelper extends ChangeNotifier {
   );
   BalanceItem get balances => _balances;
 
+  void initializeBalances(InitialData initialData) {
+    _balances = BalanceItem(
+      gpay: initialData.gpay,
+      paytm: initialData.paytm,
+      cash: initialData.cash,
+      income: 0,
+      expense: 0,
+      totalBalance: initialData.cash + initialData.paytm + initialData.gpay,
+    );
+    notifyListeners();
+  }
+
   void getBalancesFromTable() async {
     var db = await _databaseHelper.database;
-    var result = await db.rawQuery(
+    var result = await db.rawQuery('select * from $initialDataTable');
+    InitialData _initialData = InitialData.fromMap(result[0]);
+    initializeBalances(_initialData);
+    result = await db.rawQuery(
       '''select $clubTransactionsPaymentMethodColumn, 
          sum(case when $clubTransactionsTransactionDirectionColumn = '${ClubTransactionDirection.Incoming}' then $clubTransactionsAmountColumn else 0 end) - 
          sum(case when $clubTransactionsTransactionDirectionColumn = '${ClubTransactionDirection.Outgoing}' then $clubTransactionsAmountColumn else 0 end) 
@@ -41,10 +57,10 @@ class BalancesHelper extends ChangeNotifier {
           cash = convertToDouble(element[clubTransactionsAmountColumn]);
       },
     );
-    _balances.gpay = gpay;
-    _balances.paytm = paytm;
-    _balances.cash = cash;
-    _balances.totalBalance = gpay + paytm + cash;
+    _balances.gpay += gpay;
+    _balances.paytm += paytm;
+    _balances.cash += cash;
+    _balances.totalBalance += gpay + paytm + cash;
     result = await db.rawQuery(
       '''
          select ifnull (
@@ -57,7 +73,7 @@ class BalancesHelper extends ChangeNotifier {
         ), 0 ) as $balancesIncomeColumn
       ''',
     );
-    _balances.income = convertToDouble(result[0][balancesIncomeColumn]);
+    _balances.income += convertToDouble(result[0][balancesIncomeColumn]);
     result = await db.rawQuery(
       '''
          select ifnull (
@@ -70,7 +86,7 @@ class BalancesHelper extends ChangeNotifier {
         ), 0 ) as $balancesExpenseColumn
       ''',
     );
-    _balances.expense = convertToDouble(result[0][balancesExpenseColumn]);
+    _balances.expense += convertToDouble(result[0][balancesExpenseColumn]);
 
     notifyListeners();
   }

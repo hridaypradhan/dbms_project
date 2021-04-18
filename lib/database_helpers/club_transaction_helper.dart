@@ -84,7 +84,7 @@ class ClubTransactionHelper extends ChangeNotifier {
            $clubTransactionsTransactionDirectionColumn
          ) 
          values 
-         (
+         ( 
            '${transaction.description}', 
            '${transaction.payer}', 
            '${transaction.payee}', 

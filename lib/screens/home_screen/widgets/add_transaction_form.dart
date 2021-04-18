@@ -166,8 +166,8 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
               child: DropdownButton(
                 value: _chosenDirection,
                 items: <String>[
-                  'Debit',
-                  'Credit',
+                  'Incoming',
+                  'Outgoing',
                 ].map<DropdownMenuItem<String>>(
                   (String value) {
                     return DropdownMenuItem<String>(

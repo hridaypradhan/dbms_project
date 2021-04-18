@@ -70,6 +70,17 @@ class DatabaseHelper {
         ''').then(
           (value) => print('Collabs Table created!'),
         );
+        // Create Initial Data Table
+        await db.execute('''
+              create table $initialDataTable (
+                $initialDataGpayColumn decimal,
+                $initialDataPaytmColumn decimal,
+                $initialDataCashColumn decimal,
+                $initialDataClubNameColumn text
+              )
+        ''').then(
+          (value) => print('Initial Data Table created!'),
+        );
       },
     );
     return database;

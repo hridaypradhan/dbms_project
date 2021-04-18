@@ -35,6 +35,12 @@ final String balancesIncomeColumn = 'income';
 final String balancesExpenseColumn = 'expense';
 final String balancesTotalBalanceColumn = 'totalBalance';
 
+final String initialDataTable = 'initialDataTable';
+final String initialDataGpayColumn = 'gpay';
+final String initialDataPaytmColumn = 'paytm';
+final String initialDataCashColumn = 'cash';
+final String initialDataClubNameColumn = 'clubName';
+
 final String tedxImageUrl =
     'https://scontent.fdel11-2.fna.fbcdn.net/v/t1.18169-9/19275217_832559843576568_4463523526816254879_n.png?_nc_cat=110&ccb=1-3&_nc_sid=973b4a&_nc_ohc=yJj022clKjoAX8fHEu4&_nc_ht=scontent.fdel11-2.fna&oh=2b6b15093036abfa89bda839ea4e3a60&oe=60A24A1A';
 final String inspiriaImageUrl =
