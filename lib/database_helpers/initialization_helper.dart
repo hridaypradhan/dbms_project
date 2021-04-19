@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 class InitializationHelper extends ChangeNotifier {
   InitializationHelper() {
-    checkInitialization();
     getInitialDataFromTable();
   }
   bool _dataInitialized = false;
@@ -18,14 +17,16 @@ class InitializationHelper extends ChangeNotifier {
     var db = await _databaseHelper.database;
     var result = await db.rawQuery('select * from $initialDataTable');
     _dataInitialized = result.length > 0;
-    notifyListeners();
   }
 
-  Future<InitialData> getInitialDataFromTable() async {
+  void getInitialDataFromTable() async {
     var db = await _databaseHelper.database;
     var result = await db.rawQuery('select * from $initialDataTable');
-    _initialData = InitialData.fromMap(result[0]);
-    return _initialData;
+    if (result.isNotEmpty) {
+      _initialData = InitialData.fromMap(result[0]);
+      _dataInitialized = true;
+    }
+    notifyListeners();
   }
 
   void insertInitialData(InitialData initialData) async {

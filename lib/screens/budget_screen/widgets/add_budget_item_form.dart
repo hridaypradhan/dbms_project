@@ -90,7 +90,7 @@ class _AddBudgetItemFormState extends State<AddBudgetItemForm> {
         ReusableBox(
           child: DateTimePicker(
             textAlign: TextAlign.center,
-            type: DateTimePickerType.dateTimeSeparate,
+            type: DateTimePickerType.date,
             firstDate: DateTime.now(),
             lastDate: DateTime(DateTime.now().year + 2),
             dateHintText: 'Tentative Event Date',

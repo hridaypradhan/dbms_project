@@ -96,78 +96,39 @@ class _AddCollabFormState extends State<AddCollabForm> {
             hintText: 'POC for the second club',
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            ReusableBox(
-              child: DropdownButton(
-                value: _chosenClubOne,
-                items: <String>[
-                  'TEDx',
-                  'E-Cell',
-                  'Inspiria',
-                  'Aura',
-                  'Feeding India SNU',
-                ].map<DropdownMenuItem<String>>(
-                  (String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                      ),
-                    );
-                  },
-                ).toList(),
-                onChanged: (value) {
-                  setState(
-                    () {
-                      _chosenClubOne = value;
-                    },
-                  );
-                },
-                hint: Text(
-                  'Your Club',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
+        ReusableBox(
+          child: DropdownButton(
+            value: _chosenClubTwo,
+            items: <String>[
+              'TEDx',
+              'E-Cell',
+              'Inspiria',
+              'Aura',
+              'Feeding India SNU',
+            ].map<DropdownMenuItem<String>>(
+              (String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(
+                    value,
                   ),
-                ),
+                );
+              },
+            ).toList(),
+            onChanged: (value) {
+              setState(
+                () {
+                  _chosenClubTwo = value;
+                },
+              );
+            },
+            hint: Text(
+              'Collaborator Club',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
               ),
             ),
-            ReusableBox(
-              child: DropdownButton(
-                value: _chosenClubTwo,
-                items: <String>[
-                  'TEDx',
-                  'E-Cell',
-                  'Inspiria',
-                  'Aura',
-                  'Feeding India SNU',
-                ].map<DropdownMenuItem<String>>(
-                  (String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                      ),
-                    );
-                  },
-                ).toList(),
-                onChanged: (value) {
-                  setState(
-                    () {
-                      _chosenClubTwo = value;
-                    },
-                  );
-                },
-                hint: Text(
-                  'Other Club',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ],
+          ),
         ),
         TextField(
           textAlign: TextAlign.center,
