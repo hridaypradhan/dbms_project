@@ -241,8 +241,9 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
                     : 'Unspecified',
                 amount: double.parse(_amountController.text),
                 dateTime: _chosenDateTime ?? DateTime.now(),
-                paymentMethod: getPaymentMethod(_chosenPaymentMethod) ??
-                    PaymentMethod.Cash,
+                paymentMethod: _chosenPaymentMethod == null
+                    ? throw Exception
+                    : getPaymentMethod(_chosenPaymentMethod),
                 paymentCategory: getPaymentCategory(_chosenCategory) ??
                     PaymentCategory.Transport,
                 transactionDirection: getDirection(_chosenDirection) ??

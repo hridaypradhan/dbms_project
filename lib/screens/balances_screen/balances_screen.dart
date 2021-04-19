@@ -47,7 +47,7 @@ class BalancesScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(25.0),
                       ),
                       child: Text(
-                        'Debit \n₹${_balances.income}',
+                        'Credit \n₹${_balances.income}',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 20.0,
@@ -66,7 +66,7 @@ class BalancesScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(25.0),
                       ),
                       child: Text(
-                        'Credit \n₹${_balances.expense}',
+                        'Debit \n₹${_balances.expense}',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 20.0,

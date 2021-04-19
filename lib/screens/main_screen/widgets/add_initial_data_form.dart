@@ -66,7 +66,7 @@ class _AddInitialDataFormState extends State<AddInitialDataForm> {
                     );
                   },
                   hint: Text(
-                    'Collaborator Club',
+                    'Your Club',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
