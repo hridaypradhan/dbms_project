@@ -36,8 +36,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     Provider.of<InitializationHelper>(context).checkInitialization();
     return Provider.of<InitializationHelper>(context).dataInitialized
-        ? 
-        Scaffold(
+        ? Scaffold(
             bottomNavigationBar: FFNavigationBar(
               selectedIndex: _barIndex,
               items: [
@@ -121,7 +120,8 @@ class _MainScreenState extends State<MainScreen> {
                 BudgetScreen(),
               ],
             ),
-          ):AddInitialDataForm();
+          )
+        : AddInitialDataForm();
   }
 
   _getForm(int prevPage) {

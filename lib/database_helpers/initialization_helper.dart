@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 
 class InitializationHelper extends ChangeNotifier {
   InitializationHelper() {
+    checkInitialization();
     getInitialDataFromTable();
   }
   bool _dataInitialized = false;
   InitialData _initialData;
   DatabaseHelper _databaseHelper = DatabaseHelper();
   bool get dataInitialized => _dataInitialized;
+  InitialData get initialData => _initialData;
 
   void checkInitialization() async {
     var db = await _databaseHelper.database;

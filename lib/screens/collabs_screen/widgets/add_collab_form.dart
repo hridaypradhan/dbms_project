@@ -1,5 +1,6 @@
 import 'package:dbms_project/database_helpers/budget_helper.dart';
 import 'package:dbms_project/database_helpers/collab_helper.dart';
+import 'package:dbms_project/database_helpers/initialization_helper.dart';
 import 'package:dbms_project/global/strings.dart';
 import 'package:dbms_project/models/budget_item.dart';
 import 'package:dbms_project/models/club_collab.dart';
@@ -214,7 +215,11 @@ class _AddCollabFormState extends State<AddCollabForm> {
                 resourcesAllocated: double.parse(_amountController.text),
                 eventMonth: _getMonthName(_chosenDateTime),
                 clubTwo: _chosenClubTwo ?? 'Club 2',
-                clubOne: _chosenClubOne ?? 'Club 1',
+                clubOne: _chosenClubOne ??
+                    Provider.of<InitializationHelper>(
+                      context,
+                      listen: false,
+                    ).initialData.clubName,
                 imageUrl: _getImageUrl(_chosenClubTwo),
                 isExpanded: false,
               );
@@ -228,7 +233,11 @@ class _AddCollabFormState extends State<AddCollabForm> {
                     : _eventNameController.text,
                 amount: double.parse(_amountController.text),
                 dateTime: _chosenDateTime,
-                description: 'Collaboration between ${_chosenClubOne ?? 'Club 1'} and ${_chosenClubTwo ?? 'Club 2'}',
+                description:
+                    'Collaboration between ${_chosenClubOne ?? Provider.of<InitializationHelper>(
+                          context,
+                          listen: false,
+                        ).initialData.clubName} and ${_chosenClubTwo ?? 'Club 2'}',
               );
               Provider.of<BudgetHelper>(
                 context,
