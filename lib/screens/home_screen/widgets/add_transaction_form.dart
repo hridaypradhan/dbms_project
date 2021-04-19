@@ -1,5 +1,4 @@
 import 'package:dbms_project/database_helpers/balances_helper.dart';
-import 'package:dbms_project/database_helpers/initialization_helper.dart';
 import 'package:dbms_project/global/constants.dart';
 import 'package:dbms_project/database_helpers/club_transaction_helper.dart';
 import 'package:dbms_project/global/enums.dart';
@@ -232,13 +231,10 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
             try {
               var newTransaction = ClubTransaction(
                 payer: _payerController.text.length == 0
-                    ? Provider.of<InitializationHelper>(
-                        context,
-                        listen: false,
-                      ).initialData.clubName
+                    ? throw Exception
                     : _payerController.text,
                 payee: _payeeController.text.length == 0
-                    ? 'XYZ'
+                    ? throw Exception
                     : _payeeController.text,
                 description: _descController.text.length != 0
                     ? _descController.text

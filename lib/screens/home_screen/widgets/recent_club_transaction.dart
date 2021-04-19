@@ -13,11 +13,12 @@ class RecentClubTransaction extends StatelessWidget {
   RecentClubTransaction({this.clubTransaction});
   @override
   Widget build(BuildContext context) {
+    print('"${clubTransaction.description}"');
     return ListTile(
       leading: getPaymentCategoryIcon(clubTransaction.paymentCategory),
       title: Text('${clubTransaction.payer} to ${clubTransaction.payee}'),
       subtitle: ExpandText(
-        'Date: ${_getDate(clubTransaction)} \nReason: ${clubTransaction.description} \nCategory: ${getCategoryName(clubTransaction)} \nPayment Method: ${getPaymentMethodName(clubTransaction)}',
+        'Date: ${_getDate(clubTransaction)}\nReason: ${clubTransaction.description}\nCategory: ${getCategoryName(clubTransaction)} \nPayment Method: ${getPaymentMethodName(clubTransaction)}',
         maxLines: 1,
         expandWidth: true,
       ),

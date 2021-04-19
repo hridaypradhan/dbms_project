@@ -1,6 +1,7 @@
 import 'package:dbms_project/database_helpers/balances_helper.dart';
 import 'package:dbms_project/database_helpers/initialization_helper.dart';
 import 'package:dbms_project/models/initial_data.dart';
+import 'package:dbms_project/screens/main_screen/widgets/reusable_box.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,15 +11,12 @@ class AddInitialDataForm extends StatefulWidget {
 }
 
 class _AddInitialDataFormState extends State<AddInitialDataForm> {
-  TextEditingController _clubNameController,
-      _gpayController,
-      _paytmController,
-      _cashController;
+  TextEditingController _gpayController, _paytmController, _cashController;
+  String _clubName;
   @override
   void initState() {
     super.initState();
     _cashController = TextEditingController();
-    _clubNameController = TextEditingController();
     _gpayController = TextEditingController();
     _paytmController = TextEditingController();
   }
@@ -26,12 +24,18 @@ class _AddInitialDataFormState extends State<AddInitialDataForm> {
   @override
   void dispose() {
     _cashController.dispose();
-    _clubNameController.dispose();
     _gpayController.dispose();
     _paytmController.dispose();
     super.dispose();
   }
 
+  final List<String> _clubs = [
+    'TEDx',
+    'E-Cell',
+    'Inspiria',
+    'Aura',
+    'Feeding India SNU',
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,20 +45,32 @@ class _AddInitialDataFormState extends State<AddInitialDataForm> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              TextField(
-                textAlign: TextAlign.center,
-                keyboardType: TextInputType.name,
-                textCapitalization: TextCapitalization.words,
-                controller: _clubNameController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+              ReusableBox(
+                child: DropdownButton(
+                  value: _clubName,
+                  items: _clubs.map<DropdownMenuItem<String>>(
+                    (String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                        ),
+                      );
+                    },
+                  ).toList(),
+                  onChanged: (value) {
+                    setState(
+                      () {
+                        _clubName = value;
+                      },
+                    );
+                  },
+                  hint: Text(
+                    'Collaborator Club',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  hintStyle: TextStyle(color: Colors.grey),
-                  hintText: 'Enter your club\'s name',
                 ),
               ),
               TextField(
@@ -112,7 +128,7 @@ class _AddInitialDataFormState extends State<AddInitialDataForm> {
                 onPressed: () async {
                   try {
                     var initialData = InitialData(
-                      clubName: _clubNameController.text,
+                      clubName: _clubName,
                       paytm: double.parse(_paytmController.text),
                       gpay: double.parse(_gpayController.text),
                       cash: double.parse(_cashController.text),

@@ -41,6 +41,15 @@ class _AddCollabFormState extends State<AddCollabForm> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> _collaborators = [
+      'TEDx',
+      'E-Cell',
+      'Inspiria',
+      'Aura',
+      'Feeding India SNU',
+    ];
+    _collaborators.remove(
+        Provider.of<InitializationHelper>(context).initialData.clubName);
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -99,13 +108,7 @@ class _AddCollabFormState extends State<AddCollabForm> {
         ReusableBox(
           child: DropdownButton(
             value: _chosenClubTwo,
-            items: <String>[
-              'TEDx',
-              'E-Cell',
-              'Inspiria',
-              'Aura',
-              'Feeding India SNU',
-            ].map<DropdownMenuItem<String>>(
+            items: _collaborators.map<DropdownMenuItem<String>>(
               (String value) {
                 return DropdownMenuItem<String>(
                   value: value,
