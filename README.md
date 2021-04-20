@@ -1,4 +1,4 @@
-# dbms_project
+# Club Passbook (SNU)
 
 A new Flutter project.
 
