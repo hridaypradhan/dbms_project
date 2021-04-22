@@ -48,7 +48,9 @@ class ClubTransactionHelper extends ChangeNotifier {
               paymentCategory: getPaymentCategory(
                 element['$clubTransactionsPaymentCategoryColumn'],
               ),
-              amount: element['$clubTransactionsAmountColumn'],
+              amount: convertToDouble(
+                element['$clubTransactionsAmountColumn'],
+              ),
             ),
           );
         },
