@@ -76,6 +76,8 @@ ClubTransactionDirection getDirection(String direction) {
     return ClubTransactionDirection.Outgoing;
 }
 
+double convertToDouble(int n) => n.toDouble();
+
 CategoryBalance foodBalance = CategoryBalance(
   paymentCategory: PaymentCategory.Food,
   amount: 0,
