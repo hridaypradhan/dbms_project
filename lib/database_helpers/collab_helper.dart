@@ -85,7 +85,7 @@ class CollabHelper extends ChangeNotifier {
          ) as $clubCollabTotal
       ''',
     );
-    _totalAmount = convertToDouble(result[0][clubCollabTotal]);
+    _totalAmount = result[0][clubCollabTotal];
     notifyListeners();
   }
 }

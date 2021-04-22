@@ -79,7 +79,7 @@ class BudgetHelper extends ChangeNotifier {
          ) as $budgetAmountColumn
       ''',
     );
-    _totalAmount = convertToDouble(result[0][budgetAmountColumn]);
+    _totalAmount = result[0][budgetAmountColumn];
 
     notifyListeners();
   }
