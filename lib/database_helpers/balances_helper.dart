@@ -50,11 +50,11 @@ class BalancesHelper extends ChangeNotifier {
     result.forEach(
       (element) {
         if (element.containsValue(PaymentMethod.GPay.toString()))
-          gpay = element[clubTransactionsAmountColumn];
+          gpay = convertToDouble(element[clubTransactionsAmountColumn]);
         else if (element.containsValue(PaymentMethod.Paytm.toString()))
-          paytm = element[clubTransactionsAmountColumn];
+          paytm = convertToDouble(element[clubTransactionsAmountColumn]);
         else if (element.containsValue(PaymentMethod.Cash.toString()))
-          cash = element[clubTransactionsAmountColumn];
+          cash = convertToDouble(element[clubTransactionsAmountColumn]);
       },
     );
     _balances.gpay += gpay;
@@ -73,7 +73,7 @@ class BalancesHelper extends ChangeNotifier {
         ), 0 ) as $balancesIncomeColumn
       ''',
     );
-    _balances.income += result[0][balancesIncomeColumn];
+    _balances.income += convertToDouble(result[0][balancesIncomeColumn]);
     result = await db.rawQuery(
       '''
          select ifnull (
@@ -86,7 +86,7 @@ class BalancesHelper extends ChangeNotifier {
         ), 0 ) as $balancesExpenseColumn
       ''',
     );
-    _balances.expense += result[0][balancesExpenseColumn];
+    _balances.expense += convertToDouble(result[0][balancesExpenseColumn]);
 
     notifyListeners();
   }
