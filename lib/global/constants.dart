@@ -3,8 +3,6 @@ import 'package:dbms_project/models/club_transaction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
-
 Icon getTransactionIcon(ClubTransactionDirection direction) {
   return direction == ClubTransactionDirection.Incoming
       ? Icon(
@@ -76,7 +74,7 @@ ClubTransactionDirection getDirection(String direction) {
     return ClubTransactionDirection.Outgoing;
 }
 
-double convertToDouble(int n) => n.toDouble();
+double convertToDouble(n) => n is int ? n.toDouble() : n;
 
 CategoryBalance foodBalance = CategoryBalance(
   paymentCategory: PaymentCategory.Food,

@@ -10,7 +10,7 @@ import 'package:dbms_project/screens/main_screen/widgets/add_initial_data_form.d
 import 'package:ff_navigation_bar/ff_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+ 
 class MainScreen extends StatefulWidget {
   @override
   _MainScreenState createState() => _MainScreenState();

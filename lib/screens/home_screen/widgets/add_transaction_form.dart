@@ -22,11 +22,11 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
       _amountController;
   @override
   void initState() {
-    super.initState();
     _payerController = TextEditingController();
     _payeeController = TextEditingController();
     _descController = TextEditingController();
     _amountController = TextEditingController();
+    super.initState();
   }
 
   @override

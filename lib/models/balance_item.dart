@@ -9,7 +9,7 @@ class BalanceItem {
     this.expense,
     this.totalBalance,
   });
-
+ 
   double gpay, paytm, cash, income, expense, totalBalance;
 
   factory BalanceItem.fromMap(Map<String, dynamic> json) => BalanceItem(

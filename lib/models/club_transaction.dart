@@ -8,7 +8,7 @@ class ClubTransaction {
   String payer, payee, description;
   double amount;
   PaymentMethod paymentMethod;
-  DateTime dateTime;
+  DateTime dateTime; 
   PaymentCategory paymentCategory;
   ClubTransactionDirection transactionDirection;
 
