@@ -1,7 +1,7 @@
-import 'package:dbms_project/database_helpers/balances_helper.dart';
-import 'package:dbms_project/database_helpers/initialization_helper.dart';
-import 'package:dbms_project/models/initial_data.dart';
-import 'package:dbms_project/screens/main_screen/widgets/reusable_box.dart';
+import '../../../database_helpers/balances_helper.dart';
+import '../../../database_helpers/initialization_helper.dart';
+import '../../../models/initial_data.dart';
+import 'reusable_box.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

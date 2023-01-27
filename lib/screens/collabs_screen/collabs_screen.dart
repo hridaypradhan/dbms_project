@@ -1,5 +1,5 @@
-import 'package:dbms_project/database_helpers/collab_helper.dart';
-import 'package:dbms_project/screens/collabs_screen/widgets/collab_unit.dart';
+import '../../database_helpers/collab_helper.dart';
+import 'widgets/collab_unit.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

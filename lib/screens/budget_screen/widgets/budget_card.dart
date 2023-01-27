@@ -1,4 +1,4 @@
-import 'package:dbms_project/models/budget_item.dart';
+import '../../../models/budget_item.dart';
 import 'package:flutter/material.dart';
 
 class BudgetCard extends StatelessWidget {

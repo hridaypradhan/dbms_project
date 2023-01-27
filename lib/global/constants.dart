@@ -1,5 +1,5 @@
-import 'package:dbms_project/global/enums.dart';
-import 'package:dbms_project/models/club_transaction.dart';
+import 'enums.dart';
+import '../models/club_transaction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

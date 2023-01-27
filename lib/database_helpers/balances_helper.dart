@@ -1,9 +1,9 @@
-import 'package:dbms_project/database_helpers/database_helper.dart';
-import 'package:dbms_project/global/constants.dart';
-import 'package:dbms_project/global/enums.dart';
-import 'package:dbms_project/global/strings.dart';
-import 'package:dbms_project/models/balance_item.dart';
-import 'package:dbms_project/models/initial_data.dart';
+import 'database_helper.dart';
+import '../global/constants.dart';
+import '../global/enums.dart';
+import '../global/strings.dart';
+import '../models/balance_item.dart';
+import '../models/initial_data.dart';
 import 'package:flutter/material.dart';
 
 class BalancesHelper extends ChangeNotifier {

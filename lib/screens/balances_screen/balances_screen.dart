@@ -1,5 +1,5 @@
-import 'package:dbms_project/database_helpers/balances_helper.dart';
-import 'package:dbms_project/screens/balances_screen/widgets/balance_card.dart';
+import '../../database_helpers/balances_helper.dart';
+import 'widgets/balance_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

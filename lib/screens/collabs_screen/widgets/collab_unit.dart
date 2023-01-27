@@ -1,6 +1,6 @@
-import 'package:dbms_project/database_helpers/budget_helper.dart';
-import 'package:dbms_project/database_helpers/collab_helper.dart';
-import 'package:dbms_project/models/club_collab.dart';
+import '../../../database_helpers/budget_helper.dart';
+import '../../../database_helpers/collab_helper.dart';
+import '../../../models/club_collab.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

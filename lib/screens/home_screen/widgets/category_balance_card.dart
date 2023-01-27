@@ -1,5 +1,5 @@
-import 'package:dbms_project/global/constants.dart';
-import 'package:dbms_project/models/club_transaction.dart';
+import '../../../global/constants.dart';
+import '../../../models/club_transaction.dart';
 import 'package:flutter/material.dart';
 
 class CategoryBalanceCard extends StatelessWidget {

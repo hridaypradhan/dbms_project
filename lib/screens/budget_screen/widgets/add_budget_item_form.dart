@@ -1,6 +1,6 @@
-import 'package:dbms_project/database_helpers/budget_helper.dart';
-import 'package:dbms_project/models/budget_item.dart';
-import 'package:dbms_project/screens/main_screen/widgets/reusable_box.dart';
+import '../../../database_helpers/budget_helper.dart';
+import '../../../models/budget_item.dart';
+import '../../main_screen/widgets/reusable_box.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:date_time_picker/date_time_picker.dart';

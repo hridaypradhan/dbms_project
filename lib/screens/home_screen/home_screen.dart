@@ -1,7 +1,7 @@
-import 'package:dbms_project/database_helpers/club_transaction_helper.dart';
-import 'package:dbms_project/models/club_transaction.dart';
-import 'package:dbms_project/screens/home_screen/widgets/category_balance_card.dart';
-import 'package:dbms_project/screens/home_screen/widgets/recent_club_transaction.dart';
+import '../../database_helpers/club_transaction_helper.dart';
+import '../../models/club_transaction.dart';
+import 'widgets/category_balance_card.dart';
+import 'widgets/recent_club_transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

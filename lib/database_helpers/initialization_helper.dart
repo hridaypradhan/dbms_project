@@ -1,6 +1,6 @@
-import 'package:dbms_project/database_helpers/database_helper.dart';
-import 'package:dbms_project/global/strings.dart';
-import 'package:dbms_project/models/initial_data.dart';
+import 'database_helper.dart';
+import '../global/strings.dart';
+import '../models/initial_data.dart';
 import 'package:flutter/material.dart';
 
 class InitializationHelper extends ChangeNotifier {

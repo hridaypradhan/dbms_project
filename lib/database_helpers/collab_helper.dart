@@ -1,7 +1,7 @@
-import 'package:dbms_project/database_helpers/database_helper.dart';
-import 'package:dbms_project/global/constants.dart';
-import 'package:dbms_project/global/strings.dart';
-import 'package:dbms_project/models/club_collab.dart';
+import 'database_helper.dart';
+import '../global/constants.dart';
+import '../global/strings.dart';
+import '../models/club_collab.dart';
 import 'package:flutter/material.dart';
 
 class CollabHelper extends ChangeNotifier {
